@@ -3,6 +3,9 @@ Modelo predictivo de la pertinencia  de programas de educación superior a parti
 
 __Cada 15 días se presentarán informes con avances del proyecto__
 
+
+[Posible Link de las bases de datos](https://snies.mineducacion.gov.co/portal/ESTADISTICAS/Bases-consolidadas/)
+
 ## Tareas
 
 * Generar preguntas cortas para el cuestionario.
