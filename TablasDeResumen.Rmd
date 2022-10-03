@@ -64,7 +64,7 @@ db2.f <- db2 %>% filter(.,tipo_nivel=="PREGRADO" & departamento_colegio=="ANTIOQ
                         & municipio_colegio %in% valle_aburra)
 ```
 
-Resumen 1:
+## Resumen 1:
 
 ```{r fig.width = 8.08, fig.height = 4.31, dpi = 96}
 result <- pivotr(
@@ -79,3 +79,17 @@ register("res1")
 ```
 
 ![](res1_plot.png)
+
+## Nombres de los Colegios Aplicando el filtro anterior:
+
+```{r}
+result <- pivotr(
+  db2.f, 
+  cvars = c("modacademica", "nombre_colegio"), 
+  nr = Inf
+)
+# summary()
+dtab(result) %>% render()
+nom_colegios <- result$tab
+register("nom_colegios")
+```
