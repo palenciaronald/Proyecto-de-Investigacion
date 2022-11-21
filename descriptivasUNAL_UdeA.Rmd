@@ -1,0 +1,456 @@
+---
+title: "Analisís de  BD de los Aspirantes UNAL & UdeA"
+author: "Daniel Villa - Ronald Palencia"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(magrittr)
+library(radiant)
+```
+
+```{r}
+data = read_xlsx("unal_udea.xlsx", col_names = T)
+
+data %<>% clean_names()
+```
+
+
+Mirando las categorías:
+
+
+```{r}
+data$en_que_ano_salio_o_saldra_del_colegio %>% unique()
+
+data$en_que_ano_salio_o_saldra_del_colegio =  str_replace_all(data$en_que_ano_salio_o_saldra_del_colegio, 
+                                                                 c("Once"= "2022", "11.0" = "2022", 
+                                                                   "Saldré este año" = "2022", 
+                                                                   "Ya sali" = "2021", 
+                                                                   "En el 2019" = "2019",
+                                                                   "comunicación audiovisual y multimedia" = "2019", "1°" = "2022", 
+                                                                   "2020.0" = "2022", "2022.0" = "2022", "2018.0" = "2018",
+                                                                   "2019.0" = "2019", "2017.0" = "2017", "2021.0" = "2021"))
+data
+```
+
+
+```{r}
+data$trabaja_actualmente %>%  unique()
+```
+
+```{r}
+data$si_su_anterior_respuesta_es_si_su_trabajo_esta_relacionado_con_la_carrera_a_la_cual_se_presento %>% table(exclude = F)
+```
+
+
+```{r}
+# data <- data %>% tolower(carrera_o_licenciatura_a_la_que_se_presenta)
+#   mutate(carrera_o_licenciatura_a_la_que_se_presenta = tolower(carrera_o_licenciatura_a_la_que_se_presenta)) %>% 
+  
+
+# A1 : Agronomía, Veterinaria y afines
+# A2: Bellas Artes
+# A3: Ciencias de la Educación
+# A4 : Ciencias de la Salud
+#A5: Ciencias Sociales y Humanas
+# A6 : Economía, Administración, Contaduría y afines
+# A7 : Ingeniería, Arquitectura, Urbanismo y afines
+# A8 : Matemáticas y Ciencias Naturales
+
+areas = c('A1',  'A2', 'A3','A4',
+          'A5', 'A6', 'A7',
+          'A8')
+
+data$carrera_o_licenciatura_a_la_que_se_presenta %<>% tolower() %>% chartr("áéíóú", "aeiou", .)
+
+```
+
+
+
+```{r}
+data$carrera_o_licenciatura_a_la_que_se_presenta <- str_replace_all(data$carrera_o_licenciatura_a_la_que_se_presenta,
+                                                                    c("(^(ing).*)|(^(ign).*)" = "A7", "(^(arq).*)" =  "A7",
+                                                                      "(.*(agr).*)|(^(zoo).*)" = "A1", "(.*(vet).*)" = "A1",
+                                                                      "(.*(esta).*)|(.*(mate).*)" = "A8", "(^(fis).*)|(^(astro).*)" = "A8", 
+                                                                      "(^(eco).*)|(.*(nego).*)" = "A6",
+                                                                      "(^(admi).*)|(^(archivis).*)" = "A6", "(^(conta).*)" = "A6", 
+                                                                      "(^(lic).*)" = "A3", "(.*(polit).*)" = "A5", "(.*(hist).*)" = "A5",
+                                                                      "(.*(derec).*)" = "A5", "(.*(filo).*)" = "A5", "(.*(teolo).*)" = "A5", 
+                                                                      "(.*(antro).*)|(.*(perio).*)" = "A5", "(^(pedag).*)|(^(entren).*)" = "A3", 
+                                                                      "(.*(socio).*)|(.*(traducc).*)" = "A5", "(.*(arte).*)|(.*(cult).*)" = "A2", 
+                                                                      "(.*(multime).*)|(.*(maquilla).*)" = "A2",
+                                                                      "(^(pregrado).*)|(^(bioingenieria).*)" = "A7",
+                                                                      "(.*(softw).*)" = "A7", "(.*(medici).*)|(.*(salud).*)" = "A4", 
+                                                                      "(.*(trumenta).*)|(.*(enferm).*)" = "A4", 
+                                                                      "(.*(odonto).*)|(.*(cologia).*)" = "A4",
+                                                                      "(.*(farma).*)" = "A4", "(.*(sistema).*)" = "A7"))
+```
+
+```{r}
+data$carrera_o_licenciatura_a_la_que_se_presenta %>%  unique()
+```
+
+
+
+```{r}
+data$escoja_una_de_las_siguientes_razones_por_la_que_va_a_estudiar %>%  unique()
+```
+
+```{r}
+data$seleccione_la_principal_razon_para_la_eleccion_de_la_carrera_anterior %>%  table() %>% sort(decreasing = F) %>%  data.frame()
+```
+
+
+```{r}
+data$si_su_anterior_respuesta_es_si_indica_cual %<>% tolower() %>% chartr("áéíóú", "aeiou", .)
+data$si_su_anterior_respuesta_es_si_indica_cual %>% unique() %>%  unique()
+```
+
+```{r}
+data$si_su_anterior_respuesta_es_si_indica_cual <-  str_replace_all(data$si_su_anterior_respuesta_es_si_indica_cual,
+                                                                  c("(^(ing).*)|(^(ign).*)" = "A7", "(^(arq).*)" =  "A7",
+                                                                      "(.*(agr).*)|(^(zoo).*)" = "A1", "(.*(vet).*)" = "A1",
+                                                                      "(.*(esta).*)|(.*(mate).*)" = "A8", "(^(fis).*)|(^(astro).*)" = "A8", 
+                                                                      "(^(eco).*)|(.*(nego).*)" = "A6",
+                                                                      "(^(admi).*)|(^(archivis).*)" = "A6", "(^(conta).*)" = "A6", 
+                                                                      "(^(lic).*)" = "A3", "(.*(polit).*)" = "A5", "(.*(hist).*)" = "A5",
+                                                                      "(.*(derec).*)" = "A5", "(.*(filo).*)" = "A5", "(.*(teolo).*)" = "A5", 
+                                                                      "(.*(antro).*)|(.*(perio).*)" = "A5", "(^(pedag).*)|(^(entren).*)" = "A3", 
+                                                                      "(.*(socio).*)|(.*(traduc).*)" = "A5", "(.*(arte).*)|(.*(cult).*)" = "A2", 
+                                                                      "(.*(multime).*)|(.*(maquilla).*)" = "A2",
+                                                                      "(^(pregrado).*)|(^(bioingenieria).*)" = "A7",
+                                                                      "(.*(softw).*)" = "A7", "(.*(medici).*)|(.*(salud).*)" = "A4", 
+                                                                      "(.*(trumenta).*)|(.*(enferm).*)" = "A4", 
+                                                                      "(.*(odonto).*)|(.*(cologia).*)" = "A4",
+                                                                      "(.*(farma).*)" = "A4", "(.*(una).*)|(.*(so).*)" = "no", 
+                                                                      "(.*(interesa).*)|(.*(nt).*)" = "no", "(.*([.]).*)|(.*(uwu).*)" = "no",
+                                                                    "(.*(music).*)|(.*(audio).*)" = "A2", "(.*(cine).*)" = "A2",
+                                                                    "(.*(biol).*)|(.*(nutri).*)" = "A4", "(.*(bact).*)" = "A4", 
+                                                                    "(.*(quimi).*)" = "A8", "(.*(adminis).*)" = "A6", "(.*(educac).*)" = "A3",
+                                                                    "(.*(web).*)|(.*(mecatro).*)" = "A7","(.*(web).*)|(.*(aviaci).*)" = "A7",
+                                                                    "(.*([n/a]).*)" = "no"
+                                                              )) 
+```
+
+
+```{r}
+data$si_su_anterior_respuesta_es_si_indica_cual %>%  unique()
+```
+
+
+# Base de datos final
+
+Depuración final
+
+```{r}
+data <- data[-c(1:3)]
+```
+
+ahora verificamos que todo este correcto
+
+```{r}
+data[199,1] <- "Fluido"
+data[16,1] <- "Fluido"
+
+data$genero_al_que_pertenece %<>% factor()
+
+data$tipo_de_colegio_que_estudia_o_estudio %<>% factor()
+
+data$en_que_ano_salio_o_saldra_del_colegio %<>%  factor()
+
+data$trabaja_actualmente %<>%  factor()
+
+data$si_su_anterior_respuesta_es_si_su_trabajo_esta_relacionado_con_la_carrera_a_la_cual_se_presento %<>%  factor()
+
+
+data$carrera_o_licenciatura_a_la_que_se_presenta %<>% factor()
+
+
+data$escoja_una_de_las_siguientes_razones_por_la_que_va_a_estudiar %<>% factor()
+
+
+data$seleccione_la_principal_razon_para_la_eleccion_de_la_carrera_anterior %<>% 
+  factor()
+
+
+data$le_interesa_otra_carrera_diferente_a_la_que_se_presento %<>% factor()
+
+data$si_su_anterior_respuesta_es_si_indica_cual %<>% factor()
+
+data$la_anterior_carrera_esta_disponible_en_esta_u_otra_universidad %<>% factor()
+
+
+data$cuenta_con_algun_estudio_curso_tecnico_entre_otros_certificable_que_este_relacionado_con_la_carrera_que_selecciono %<>% factor()
+
+data[144:145,13] <- rep("Todas las anteriores", 2)
+
+
+data$universidad_a_la_que_aspira %<>%  factor()
+```
+
+Resumen rápido de nuestras variables
+
+```{r}
+skimr::skim(data)
+```
+
+
+# Analisís de nuestras variables:
+
+```{r}
+## change factor levels
+data <- mutate(data, genero_al_que_pertenece = refactor(genero_al_que_pertenece, levs = c("Binario","Femenino","Fluido"), repl = "Masculino"))
+```
+
+Base de datos organizada
+
+```{r}
+## filter and sort the dataset
+data %>%
+  select(genero_al_que_pertenece:universidad_a_la_que_aspira) %>%
+  dtab(dec = 2, nr = 100) %>% render()
+```
+
+
+## Tabla de Frecuencias, con su respectivo gráfico para una mejor visualización
+
+Tabla y gráfico del genero alusivo.
+
+```{r fig.width = 8.08, fig.height = 4.31, dpi = 96}
+result <- pivotr(
+  data, 
+  cvars = "genero_al_que_pertenece", 
+  nr = Inf
+)
+plot(result)
+# summary()
+dtab(result) %>% render()
+```
+Podemos notar que en la muestras tomada (de forma sistemática de 1-20) pudimos
+visualizar un mayor numero de mujeres que fueron más receptivas al momento de
+realizar la encuesta, además, contamos con algunos otros géneros que no son
+significativos como el Binario y el Fluido.
+
+
+Para el caso del tipo de colegio donde estudió o estudia:
+
+
+```{r fig.width = 8.08, fig.height = 4.31, dpi = 96}
+result <- pivotr(
+  data, 
+  cvars = "tipo_de_colegio_que_estudia_o_estudio", 
+  nr = Inf
+)
+plot(result, dec = 0)
+# summary()
+dtab(result, dec = 0) %>% render()
+```
+
+Son mayoritarios los colegio que estudian en colegios del estado, revelando
+que la mayoría de los aspirantes a universidades publicas no vienen de colegios
+privados.
+
+
+```{r fig.width = 8.08, fig.height = 4.31, dpi = 96}
+result <- pivotr(
+  data, 
+  cvars = "en_que_ano_salio_o_saldra_del_colegio", 
+  normalize = "total", 
+  nr = Inf
+)
+plot(result, perc = TRUE, dec = 0)
+# summary()
+dtab(result, perc = TRUE, dec = 0) %>% render()
+```
+
+Las promociones de 2022, siempre presentan un numero mayoritario en los aspirantes
+esto se debe al segundo corte o la prueba de final de año, para el ingreso en el 2023
+esto lo decimos ya que podríamos afirmar que en le primer corte los aspirantes salieron del colegio
+en épocas diferentes, más homogeneidad.
+
+
+```{r fig.width = 8.08, fig.height = 4.31, dpi = 96}
+result <- pivotr(
+  data, 
+  cvars = "trabaja_actualmente", 
+  nr = Inf
+)
+plot(result, dec = 0)
+# summary()
+dtab(result, dec = 0) %>% render()
+```
+
+En el segundo corte se esperan aspirantes que aun no han salido de estudiar, por ende
+la mayoría no cuenta con un trabajo, podríamos afirmar que para el primer corte del 2023
+estos estudiantes que no ingresaron posiblemente estén laborando para entonces.
+
+
+```{r fig.width = 8.08, fig.height = 4.31, dpi = 96}
+result <- pivotr(
+  data, 
+  cvars = "carrera_o_licenciatura_a_la_que_se_presenta", 
+  tabsort = "carrera_o_licenciatura_a_la_que_se_presenta", 
+  nr = Inf
+)
+plot(result, dec = 0)
+# summary()
+dtab(result, dec = 0) %>% render()
+```
+
+Ahora una de las variables más importantes, es saber cuales son las aspiraciones en áreas de conocimiento de los que hicieron examen de admisión, por lo cual planteamos una vez más las diferentes áreas del saber, en las cuales se aterrorizan todas las carreras brindadas en el estado de Colombia:
+
++ A1 = Agronomía, Veterinaria y afines 
+
++ A2 = Bellas Artes
+
++ A3 = Ciencias de la Educación
+
++ A4 = Ciencias de la Salud
+
++ A5 = Ciencias Sociales y Humanas
+
++ A6 = Economía, Administración, Contaduría y afines
+
++ A7 = Ingeniería, Arquitectura, Urbanismo y afines
+
++ A8 = Matemáticas y Ciencias Naturales
+
+Ahora, observando la tabla tenemos que las ingenieras, arquitectura, urbanismo y afines, son el área más demanda de nuestra muestra.
+
+En parte era evidente ya que gran parte de las encuestas fueron realizadas en al UNAL sede Medellín, una universidad que la mayoría, por no decir todas las carreras son de esta área.
+
+```{r}
+result <- pivotr(
+  data, 
+  cvars = "escoja_una_de_las_siguientes_razones_por_la_que_va_a_estudiar", 
+  tabsort = "desc(n_obs)", 
+  nr = Inf
+)
+# summary()
+dtab(result, dec = 0, pageLength = 25) %>% render()
+```
+
+Una de las razones por la cual los aspirantes desean entrar a una universidad es porque tienen un alto interés en superarse o bien en estudiar.
+
+```{r}
+result <- pivotr(
+  data, 
+  cvars = "seleccione_la_principal_razon_para_la_eleccion_de_la_carrera_anterior", 
+  tabsort = "desc(n_obs)", 
+  nr = Inf
+)
+# summary()
+dtab(result, dec = 0) %>% render()
+```
+
+Ahora esperamos que sea cierto que la mayoría de los aspirantes hayan leído el pensum, para decidir que esta es su linea de interés.
+
+```{r}
+result <- pivotr(
+  data, 
+  cvars = "cuenta_con_algun_estudio_curso_tecnico_entre_otros_certificable_que_este_relacionado_con_la_carrera_que_selecciono", 
+  nr = Inf
+)
+# summary()
+dtab(result, dec = 0) %>% render()
+```
+
+Aunque creímos que los aspirantes para el 2023 no tendrían una fundamentación en el programa que eligieron, realmente nos dejaron sorprendidos al darnos cuenta que casi 100 personas tienen estudios
+que se relacionen con su carrera.
+
+
+```{r}
+result <- pivotr(
+  data, 
+  cvars = "le_interesa_otra_carrera_diferente_a_la_que_se_presento", 
+  nr = Inf
+)
+# summary()
+dtab(result, dec = 0) %>% render()
+```
+
+La decisión de tomar una carrera y no una linea de conocimiento, es marcada en Colombia
+ya que observamos a personas cerradas en una carrera, aunque estos mismos después eran los que esperaban al menos dos universidades para ingresar a la misma carrera.
+
+
+```{r}
+result <- pivotr(
+  data, 
+  cvars = "universidad_a_la_que_aspira", 
+  tabsort = "desc(n_obs)", 
+  nr = Inf
+)
+# summary()
+dtab(result, dec = 0) %>% render()
+```
+
+Como dijimos anteriormente, la mayoría de nuestros encuestados fueron en la UNAL sede medellín, esto se debe a que hubo un mayor cobertura al ingresar en la universidad, lamentablemente no fue le caso de la UdeA, la gente fue menos receptiva.
+
+```{r}
+result <- pivotr(
+  data, 
+  cvars = c(
+    "genero_al_que_pertenece", 
+    "carrera_o_licenciatura_a_la_que_se_presenta"
+  ), 
+  data_filter = "genero_al_que_pertenece %in% c('Femenino', 'Masculino')", 
+  tabsort = "desc(Masculino)", 
+  nr = Inf
+)
+# summary()
+dtab(result, dec = 0) %>% render()
+```
+
+Tanto hombres como mujeres, prefieren las ingenierías, seguidas de las Ciencias Sociales y Humanas.
+
+```{r}
+result <- pivotr(
+  data, 
+  cvars = c(
+    "trabaja_actualmente", 
+    "cuenta_con_algun_estudio_curso_tecnico_entre_otros_certificable_que_este_relacionado_con_la_carrera_que_selecciono"
+  ), 
+  data_filter = "genero_al_que_pertenece %in% c('Femenino', 'Masculino')", 
+  nr = Inf
+)
+# summary()
+dtab(result, dec = 0) %>% render()
+```
+
+Vemos como son muy pocos, exactamente 18 persona de las 290 que trabajan actualmente y este trabajo tiene que ver con la carrera seleccionada el día del examen.
+
+```{r}
+result <- pivotr(
+  data, 
+  cvars = c(
+    "tipo_de_colegio_que_estudia_o_estudio", 
+    "escoja_una_de_las_siguientes_razones_por_la_que_va_a_estudiar"
+  ), 
+  tabsort = "desc(Publico)", 
+  nr = Inf
+)
+# summary()
+dtab(result, dec = 0) %>% render()
+```
+
+Otra comparación que resulta llamativa es comparar el tipo de colegio en el que estudio o estudia y la razón por la cual quiere entrar a una universidad.
+
+Son muy parecidos en el conteo de los estudiantes que quieren superarse y les interesa estudiar que salieron de colegios públicos.
+

@@ -1,0 +1,143 @@
+---
+title: "descriptivas"
+author: "Ronald Palencia"
+date: '2022-11-12'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(magrittr)
+```
+
+```{r}
+data = read_xlsx("unal_udea.xlsx", col_names = T)
+
+data %<>% clean_names()
+```
+
+
+Mirando las cetogorias 
+
+
+```{r}
+data$en_que_ano_salio_o_saldra_del_colegio %>% unique()
+
+data$en_que_ano_salio_o_saldra_del_colegio =  str_replace_all(data$en_que_ano_salio_o_saldra_del_colegio, 
+                                                                 c("Once"= "2022", "11.0" = "2022", 
+                                                                   "Saldré este año" = "2022", 
+                                                                   "Ya sali" = "2021", 
+                                                                   "En el 2019" = "2019",
+                                                                   "comunicación audiovisual y multimedia" = "2019", "1°" = "2022", 
+                                                                   "2020.0" = "2022", "2022.0" = "2022", "2018.0" = "2018",
+                                                                   "2019.0" = "2019", "2017.0" = "2017", "2021.0" = "2021"))
+data
+```
+
+
+```{r}
+data$trabaja_actualmente %>%  unique()
+```
+
+```{r}
+data$si_su_anterior_respuesta_es_si_su_trabajo_esta_relacionado_con_la_carrera_a_la_cual_se_presento %>% table(exclude = F)
+```
+
+
+```{r}
+# data <- data %>% tolower(carrera_o_licenciatura_a_la_que_se_presenta)
+#   mutate(carrera_o_licenciatura_a_la_que_se_presenta = tolower(carrera_o_licenciatura_a_la_que_se_presenta)) %>% 
+  
+
+# A1 : Agronomía, Veterinaria y afines
+# A2: Bellas Artes
+# A3: Ciencias de la Educación
+# A4 : Ciencias de la Salud
+#A5: Ciencias Sociales y Humanas
+# A6 : Economía, Administración, Contaduría y afines
+# A7 : Ingeniería, Arquitectura, Urbanismo y afines
+# A8 : Matemáticas y Ciencias Naturales
+
+areas = c('A1',  'A2', 'A3','A4',
+          'A5', 'A6', 'A7',
+          'A8')
+
+data$carrera_o_licenciatura_a_la_que_se_presenta %<>% tolower() %>% chartr("áéíóú", "aeiou", .)
+
+```
+
+
+
+```{r}
+data$carrera_o_licenciatura_a_la_que_se_presenta <- str_replace_all(data$carrera_o_licenciatura_a_la_que_se_presenta,
+                                                                    c("(^(ing).*)|(^(ign).*)" = "A7", "(^(arq).*)" =  "A7",
+                                                                      "(.*(agr).*)|(^(zoo).*)" = "A1", "(.*(vet).*)" = "A1",
+                                                                      "(.*(esta).*)|(.*(mate).*)" = "A8", "(^(fis).*)|(^(astro).*)" = "A8", 
+                                                                      "(^(eco).*)|(.*(nego).*)" = "A6",
+                                                                      "(^(admi).*)|(^(archivis).*)" = "A6", "(^(conta).*)" = "A6", 
+                                                                      "(^(lic).*)" = "A3", "(.*(polit).*)" = "A5", "(.*(hist).*)" = "A5",
+                                                                      "(.*(derec).*)" = "A5", "(.*(filo).*)" = "A5", "(.*(teolo).*)" = "A5", 
+                                                                      "(.*(antro).*)|(.*(perio).*)" = "A5", "(^(pedag).*)|(^(entren).*)" = "A3", 
+                                                                      "(.*(socio).*)|(.*(traducc).*)" = "A5", "(.*(arte).*)|(.*(cult).*)" = "A2", 
+                                                                      "(.*(multime).*)|(.*(maquilla).*)" = "A2",
+                                                                      "(^(pregrado).*)|(^(bioingenieria).*)" = "A7",
+                                                                      "(.*(softw).*)" = "A7", "(.*(medici).*)|(.*(salud).*)" = "A4", 
+                                                                      "(.*(trumenta).*)|(.*(enferm).*)" = "A4", 
+                                                                      "(.*(odonto).*)|(.*(cologia).*)" = "A4",
+                                                                      "(.*(farma).*)" = "A4", "(.*(sistema).*)" = "A7"))
+```
+
+```{r}
+data$carrera_o_licenciatura_a_la_que_se_presenta %>%  unique()
+```
+
+
+
+```{r}
+data$escoja_una_de_las_siguientes_razones_por_la_que_va_a_estudiar %>%  unique()
+```
+
+```{r}
+data$seleccione_la_principal_razon_para_la_eleccion_de_la_carrera_anterior %>%  table() %>% sort(decreasing = F) %>%  data.frame()
+```
+
+
+```{r}
+data$si_su_anterior_respuesta_es_si_indica_cual %<>% tolower() %>% chartr("áéíóú", "aeiou", .)
+data$si_su_anterior_respuesta_es_si_indica_cual %>% unique() %>%  unique()
+```
+
+```{r}
+data$si_su_anterior_respuesta_es_si_indica_cual <-  str_replace_all(data$si_su_anterior_respuesta_es_si_indica_cual,
+                                                                  c("(^(ing).*)|(^(ign).*)" = "A7", "(^(arq).*)" =  "A7",
+                                                                      "(.*(agr).*)|(^(zoo).*)" = "A1", "(.*(vet).*)" = "A1",
+                                                                      "(.*(esta).*)|(.*(mate).*)" = "A8", "(^(fis).*)|(^(astro).*)" = "A8", 
+                                                                      "(^(eco).*)|(.*(nego).*)" = "A6",
+                                                                      "(^(admi).*)|(^(archivis).*)" = "A6", "(^(conta).*)" = "A6", 
+                                                                      "(^(lic).*)" = "A3", "(.*(polit).*)" = "A5", "(.*(hist).*)" = "A5",
+                                                                      "(.*(derec).*)" = "A5", "(.*(filo).*)" = "A5", "(.*(teolo).*)" = "A5", 
+                                                                      "(.*(antro).*)|(.*(perio).*)" = "A5", "(^(pedag).*)|(^(entren).*)" = "A3", 
+                                                                      "(.*(socio).*)|(.*(traduc).*)" = "A5", "(.*(arte).*)|(.*(cult).*)" = "A2", 
+                                                                      "(.*(multime).*)|(.*(maquilla).*)" = "A2",
+                                                                      "(^(pregrado).*)|(^(bioingenieria).*)" = "A7",
+                                                                      "(.*(softw).*)" = "A7", "(.*(medici).*)|(.*(salud).*)" = "A4", 
+                                                                      "(.*(trumenta).*)|(.*(enferm).*)" = "A4", 
+                                                                      "(.*(odonto).*)|(.*(cologia).*)" = "A4",
+                                                                      "(.*(farma).*)" = "A4", "(.*(una).*)|(.*(so).*)" = "no", 
+                                                                      "(.*(interesa).*)|(.*(nt).*)" = "no", "(.*([.]).*)|(.*(uwu).*)" = "no",
+                                                                    "(.*(music).*)|(.*(audio).*)" = "A2", "(.*(cine).*)" = "A2",
+                                                                    "(.*(biol).*)|(.*(nutri).*)" = "A4", "(.*(bact).*)" = "A4", 
+                                                                    "(.*(quimi).*)" = "A8", "(.*(adminis).*)" = "A6", "(.*(educac).*)" = "A3",
+                                                                    "(.*(web).*)|(.*(mecatro).*)" = "A7","(.*(web).*)|(.*(aviaci).*)" = "A7",
+                                                                    "(.*([n/a]).*)" = "no"
+                                                              )) 
+```
+
+
+```{r}
+data$si_su_anterior_respuesta_es_si_indica_cual %>%  unique()
+```
+
