@@ -91,7 +91,16 @@ dim(url1)[1]
 save.image(file = "pro_inv1.RData")
 
 
-
+# Verificación de las bases de datos:
+for (i in 1:41) {
+  t <- paste0("dim(url",i,")")
+  print(paste("url", i)) 
+  print(eval(parse(text=t)))
+  print("------------")
+  t <- paste0("dim(na.omit(url",i,"))")
+  print(eval(parse(text=t)))
+  print("===============")
+}
 
 
 

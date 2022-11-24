@@ -1,0 +1,1088 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Analisís de BD de los Aspirantes UNAL \& UdeA},
+  pdfauthor={Daniel Villa - Ronald Palencia},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Analisís de BD de los Aspirantes UNAL \& UdeA}
+\author{Daniel Villa - Ronald Palencia}
+\date{}
+
+\begin{document}
+\maketitle
+
+\hypertarget{introducciuxf3n}{%
+\section{Introducción:}\label{introducciuxf3n}}
+
+Este archivo se creo para el tratamiento de los datos recolectados los
+días 23 al 25 de octubre de los aspirantes universitarios de la UNAL
+sede Medellín y UdeA.
+
+\hypertarget{tipo-de-muestreo}{%
+\section{Tipo de muestreo}\label{tipo-de-muestreo}}
+
+se aplico un muestreo sistemático de 1 en 20, tomando como valor
+aleatorio inicial por medio del software R
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# fijar semilla:}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# muestreo 1 en 20 en la UdeA}
+\NormalTok{udea }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{,}\DecValTok{1}\NormalTok{, }\AttributeTok{replace =}\NormalTok{ F)}
+
+
+\CommentTok{\# muestreo 1 en 20 en la unal}
+\NormalTok{unal }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{,}\DecValTok{1}\NormalTok{, }\AttributeTok{replace =}\NormalTok{ F)}
+
+\FunctionTok{paste}\NormalTok{(}\StringTok{"UdeA = Valor generado aletoriamente: "}\NormalTok{, udea)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "UdeA = Valor generado aletoriamente:  15"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{paste}\NormalTok{(}\StringTok{"UNAL = Valor generado aletoriamente: "}\NormalTok{, unal)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "UNAL = Valor generado aletoriamente:  3"
+\end{verbatim}
+
+el valor \texttt{x\ =\ \{unal,\ udea\}} fue el que se genero por medio
+de la función \texttt{sample()}.
+
+\hypertarget{fecha-de-inicio-y-finalizaciuxf3n}{%
+\section{Fecha de inicio y
+finalización}\label{fecha-de-inicio-y-finalizaciuxf3n}}
+
+\hypertarget{primer-duxeda}{%
+\subsection{Primer día}\label{primer-duxeda}}
+
+\begin{quote}
+Nota: Unico día de recolección de datos en la UNAL, el 24 y 25 de Oct
+fueron tomados en la UdeA.
+\end{quote}
+
+las encuestas empezaron el día 23 de octubre a las 10 AM de la mañana,
+terminando a las 2 PM de la tarde
+
+\hypertarget{segundo-duxeda}{%
+\subsection{Segundo día}\label{segundo-duxeda}}
+
+las encuestas empezaron el día 24 de octubre a las 8 AM de la mañana,
+terminando a las 12 del medio día
+
+\hypertarget{tercer-duxeda}{%
+\subsection{Tercer día}\label{tercer-duxeda}}
+
+las encuestas empezaron el día 25 de octubre a las 8 AM de la mañana,
+terminando a las 11 AM (esto debido a la dificultad de tomar los datos
+en la UdeA).
+
+Se leen los datos tal cual se descargan de google forms, por ende
+utilizamos \texttt{clean\_names()} para organizar y estandarizar los
+nombres de las variables
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{=} \FunctionTok{read\_xlsx}\NormalTok{(}\StringTok{"unal\_udea.xlsx"}\NormalTok{, }\AttributeTok{col\_names =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## New names:
+## * `` -> `...1`
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\SpecialCharTok{\%\textless{}\textgreater{}\%} \FunctionTok{clean\_names}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+ahora con las función siguiente lo que hacemos es transformar la
+variable: ``año de graduación de ultimo año de secundaria''
+
+este cambio se efectuó dado las múltiples respuestas de los usuarios
+para declarar un mismo año de graduación
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#data$en\_que\_ano\_salio\_o\_saldra\_del\_colegio \%\textgreater{}\% unique()}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{en\_que\_ano\_salio\_o\_saldra\_del\_colegio }\OtherTok{=}
+  \FunctionTok{str\_replace\_all}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{en\_que\_ano\_salio\_o\_saldra\_del\_colegio,}
+                  \FunctionTok{c}\NormalTok{(}\StringTok{"Once"}\OtherTok{=} \StringTok{"2022"}\NormalTok{,}\StringTok{"11.0"} \OtherTok{=} \StringTok{"2022"}\NormalTok{,}
+                    \StringTok{"Saldré este año"} \OtherTok{=} \StringTok{"2022"}\NormalTok{, }
+                    \StringTok{"Ya sali"} \OtherTok{=} \StringTok{"2021"}\NormalTok{, }\StringTok{"En el 2019"} \OtherTok{=} \StringTok{"2019"}\NormalTok{,}
+                    \StringTok{"comunicación audiovisual y multimedia"} \OtherTok{=} \StringTok{"2019"}\NormalTok{,}
+                    \StringTok{"1°"} \OtherTok{=} \StringTok{"2022"}\NormalTok{, }
+                    \StringTok{"2020.0"} \OtherTok{=} \StringTok{"2022"}\NormalTok{, }\StringTok{"2022.0"} \OtherTok{=} \StringTok{"2022"}\NormalTok{, }\StringTok{"2018.0"} \OtherTok{=} \StringTok{"2018"}\NormalTok{,}
+                    \StringTok{"2019.0"} \OtherTok{=} \StringTok{"2019"}\NormalTok{, }\StringTok{"2017.0"} \OtherTok{=} \StringTok{"2017"}\NormalTok{, }\StringTok{"2021.0"} \OtherTok{=} \StringTok{"2021"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Con esto en mente se hace la misma verificación de las demás variables,
+por ende se entiende que las columnas que no aparecen son porque no se
+encontraron defectos o algún motivo para su cambio \emph{(esto para
+referirse a las preguntas de opción múltiple) }
+
+Ahora por medio de una caracterización dada por la SNIES, tenemos las
+siguientes categorías para la clasificación de las carreras de los
+aspirantes
+
+\begin{itemize}
+\tightlist
+\item
+  A1 : Agronomía, Veterinaria y afines
+\item
+  A2: Bellas Artes
+\item
+  A3: Ciencias de la Educación
+\item
+  A4 : Ciencias de la Salud
+\item
+  A5: Ciencias Sociales y Humanas
+\item
+  A6 : Economía, Administración, Contaduría y afines
+\item
+  A7 : Ingeniería, Arquitectura, Urbanismo y afines
+\item
+  A8 : Matemáticas y Ciencias Naturales
+\end{itemize}
+
+Aquí se encuentran repartidas cada carrera que se ofrece en todas las
+IES del país.
+
+por eso con el siguiente código se convierte cada carrera en una
+categoría de A del 1 al 8.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Creación de las áreas de la SNIES:}
+\NormalTok{areas }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}A1\textquotesingle{}}\NormalTok{,  }\StringTok{\textquotesingle{}A2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}A3\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}A4\textquotesingle{}}\NormalTok{,}
+          \StringTok{\textquotesingle{}A5\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}A6\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}A7\textquotesingle{}}\NormalTok{,}
+          \StringTok{\textquotesingle{}A8\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Estandarización para una mejor categorización}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{carrera\_o\_licenciatura\_a\_la\_que\_se\_presenta }\SpecialCharTok{\%\textless{}\textgreater{}\%}
+  \FunctionTok{tolower}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{chartr}\NormalTok{(}\StringTok{"áéíóú"}\NormalTok{, }\StringTok{"aeiou"}\NormalTok{, .)}
+
+\CommentTok{\# Clasificación de las carreras presentes en clases de A(1{-}8)}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{carrera\_o\_licenciatura\_a\_la\_que\_se\_presenta }\OtherTok{\textless{}{-}}
+  \FunctionTok{str\_replace\_all}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{carrera\_o\_licenciatura\_a\_la\_que\_se\_presenta,}
+                  \FunctionTok{c}\NormalTok{(}\StringTok{"(\^{}(ing).*)|(\^{}(ign).*)"} \OtherTok{=} \StringTok{"A7"}\NormalTok{, }\StringTok{"(\^{}(arq).*)"} \OtherTok{=}  \StringTok{"A7"}\NormalTok{,}
+                    \StringTok{"(.*(agr).*)|(\^{}(zoo).*)"} \OtherTok{=} \StringTok{"A1"}\NormalTok{, }\StringTok{"(.*(vet).*)"} \OtherTok{=} \StringTok{"A1"}\NormalTok{,}
+                    \StringTok{"(.*(esta).*)|(.*(mate).*)"} \OtherTok{=} \StringTok{"A8"}\NormalTok{, }
+                    \StringTok{"(\^{}(fis).*)|(\^{}(astro).*)"} \OtherTok{=} \StringTok{"A8"}\NormalTok{, }
+                    \StringTok{"(\^{}(eco).*)|(.*(nego).*)"} \OtherTok{=} \StringTok{"A6"}\NormalTok{,}
+                    \StringTok{"(\^{}(admi).*)|(\^{}(archivis).*)"} \OtherTok{=} \StringTok{"A6"}\NormalTok{,}
+                    \StringTok{"(\^{}(conta).*)"} \OtherTok{=} \StringTok{"A6"}\NormalTok{,}
+                    \StringTok{"(\^{}(lic).*)"} \OtherTok{=} \StringTok{"A3"}\NormalTok{, }\StringTok{"(.*(polit).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{,}
+                    \StringTok{"(.*(hist).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{,}
+                    \StringTok{"(.*(derec).*)"} \OtherTok{=}\StringTok{"A5"}\NormalTok{, }\StringTok{"(.*(filo).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{,}
+                    \StringTok{"(.*(teolo).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{, }
+                    \StringTok{"(.*(antro).*)|(.*(perio).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{,}
+                    \StringTok{"(\^{}(pedag).*)|(\^{}(entren).*)"} \OtherTok{=} \StringTok{"A3"}\NormalTok{, }
+                    \StringTok{"(.*(socio).*)|(.*(traducc).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{,}
+                    \StringTok{"(.*(arte).*)|(.*(cult).*)"} \OtherTok{=} \StringTok{"A2"}\NormalTok{, }
+                    \StringTok{"(.*(multime).*)|(.*(maquilla).*)"} \OtherTok{=} \StringTok{"A2"}\NormalTok{,}
+                    \StringTok{"(\^{}(pregrado).*)|(\^{}(bioingenieria).*)"} \OtherTok{=} \StringTok{"A7"}\NormalTok{,}
+                    \StringTok{"(.*(softw).*)"} \OtherTok{=} \StringTok{"A7"}\NormalTok{,}
+                    \StringTok{"(.*(medici).*)|(.*(salud).*)"} \OtherTok{=} \StringTok{"A4"}\NormalTok{, }
+                    \StringTok{"(.*(trumenta).*)|(.*(enferm).*)"} \OtherTok{=} \StringTok{"A4"}\NormalTok{, }
+                    \StringTok{"(.*(odonto).*)|(.*(cologia).*)"} \OtherTok{=} \StringTok{"A4"}\NormalTok{,}
+                    \StringTok{"(.*(farma).*)"} \OtherTok{=} \StringTok{"A4"}\NormalTok{, }\StringTok{"(.*(sistema).*)"} \OtherTok{=} \StringTok{"A7"}\NormalTok{))}
+
+
+\CommentTok{\# Presentación de la nueva variable con sus nuevos valores:}
+
+\NormalTok{data }\SpecialCharTok{\%\textless{}\textgreater{}\%} \FunctionTok{rename}\NormalTok{(., }\AttributeTok{areas =}\NormalTok{ carrera\_o\_licenciatura\_a\_la\_que\_se\_presenta)}
+
+\CommentTok{\#data$areas \%\textgreater{}\% table() \%\textgreater{}\% as.data.frame() \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & . & Freq \\ 
+  \hline
+1 & A1 &  15 \\ 
+  2 & A2 &  11 \\ 
+  3 & A3 &   8 \\ 
+  4 & A4 &  32 \\ 
+  5 & A5 &  27 \\ 
+  6 & A6 &  17 \\ 
+  7 & A7 & 165 \\ 
+  8 & A8 &  15 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Ahora vemos que para la siguiente también tenemos problemas seccionando
+la segunda opción del aspirante, por lo cual además de las ocho áreas de
+las SNIES tenemos una nueva dado que hubieron estudiantes que decían que
+no les interesa una segunda carrera.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# data$si\_su\_anterior\_respuesta\_es\_si\_indica\_cual \%\textgreater{}\% unique() \%\textgreater{}\%  unique()}
+
+\CommentTok{\# estandarización de las respuetas:}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{si\_su\_anterior\_respuesta\_es\_si\_indica\_cual }\SpecialCharTok{\%\textless{}\textgreater{}\%}
+  \FunctionTok{tolower}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{chartr}\NormalTok{(}\StringTok{"áéíóú"}\NormalTok{, }\StringTok{"aeiou"}\NormalTok{, .)}
+
+
+\CommentTok{\# Clasificación de las carreras como segunda opción de los aspirantes:}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{si\_su\_anterior\_respuesta\_es\_si\_indica\_cual }\OtherTok{\textless{}{-}}
+  \FunctionTok{str\_replace\_all}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{si\_su\_anterior\_respuesta\_es\_si\_indica\_cual,}
+                  \FunctionTok{c}\NormalTok{(}\StringTok{"(\^{}(ing).*)|(\^{}(ign).*)"} \OtherTok{=} \StringTok{"A7"}\NormalTok{, }\StringTok{"(\^{}(arq).*)"} \OtherTok{=}  \StringTok{"A7"}\NormalTok{,}
+                    \StringTok{"(.*(agr).*)|(\^{}(zoo).*)"} \OtherTok{=} \StringTok{"A1"}\NormalTok{, }\StringTok{"(.*(vet).*)"} \OtherTok{=} \StringTok{"A1"}\NormalTok{,}
+                    \StringTok{"(.*(esta).*)|(.*(mate).*)"} \OtherTok{=} \StringTok{"A8"}\NormalTok{,}
+                    \StringTok{"(\^{}(fis).*)|(\^{}(astro).*)"} \OtherTok{=} \StringTok{"A8"}\NormalTok{, }
+                    \StringTok{"(\^{}(eco).*)|(.*(nego).*)"} \OtherTok{=} \StringTok{"A6"}\NormalTok{,}
+                    \StringTok{"(\^{}(admi).*)|(\^{}(archivis).*)"} \OtherTok{=} \StringTok{"A6"}\NormalTok{,}
+                    \StringTok{"(\^{}(conta).*)"} \OtherTok{=} \StringTok{"A6"}\NormalTok{, }
+                    \StringTok{"(\^{}(lic).*)"} \OtherTok{=} \StringTok{"A3"}\NormalTok{,}
+                    \StringTok{"(.*(polit).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{, }\StringTok{"(.*(hist).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{,}
+                    \StringTok{"(.*(derec).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{, }\StringTok{"(.*(filo).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{,}
+                    \StringTok{"(.*(teolo).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{, }
+                    \StringTok{"(.*(antro).*)|(.*(perio).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{,}
+                    \StringTok{"(\^{}(pedag).*)|(\^{}(entren).*)"} \OtherTok{=} \StringTok{"A3"}\NormalTok{, }
+                    \StringTok{"(.*(socio).*)|(.*(traduc).*)"} \OtherTok{=} \StringTok{"A5"}\NormalTok{,}
+                    \StringTok{"(.*(arte).*)|(.*(cult).*)"} \OtherTok{=} \StringTok{"A2"}\NormalTok{, }
+                    \StringTok{"(.*(multime).*)|(.*(maquilla).*)"} \OtherTok{=} \StringTok{"A2"}\NormalTok{,}
+                    \StringTok{"(\^{}(pregrado).*)|(\^{}(bioingenieria).*)"} \OtherTok{=} \StringTok{"A7"}\NormalTok{,}
+                    \StringTok{"(.*(softw).*)"} \OtherTok{=} \StringTok{"A7"}\NormalTok{,}
+                    \StringTok{"(.*(medici).*)|(.*(salud).*)"} \OtherTok{=} \StringTok{"A4"}\NormalTok{, }
+                    \StringTok{"(.*(trumenta).*)|(.*(enferm).*)"} \OtherTok{=} \StringTok{"A4"}\NormalTok{, }
+                    \StringTok{"(.*(odonto).*)|(.*(cologia).*)"} \OtherTok{=} \StringTok{"A4"}\NormalTok{,}
+                    \StringTok{"(.*(farma).*)"} \OtherTok{=} \StringTok{"A4"}\NormalTok{, }\StringTok{"(.*(una).*)|(.*(so).*)"} \OtherTok{=} \StringTok{"no"}\NormalTok{, }
+                    \StringTok{"(.*(interesa).*)|(.*(nt).*)"} \OtherTok{=} \StringTok{"no"}\NormalTok{,}
+                    \StringTok{"(.*([.]).*)|(.*(uwu).*)"} \OtherTok{=} \StringTok{"no"}\NormalTok{,}
+                    \StringTok{"(.*(music).*)|(.*(audio).*)"} \OtherTok{=} \StringTok{"A2"}\NormalTok{,}
+                    \StringTok{"(.*(cine).*)"} \OtherTok{=} \StringTok{"A2"}\NormalTok{,}
+                    \StringTok{"(.*(biol).*)|(.*(nutri).*)"} \OtherTok{=} \StringTok{"A4"}\NormalTok{,}
+                    \StringTok{"(.*(bact).*)"} \OtherTok{=} \StringTok{"A4"}\NormalTok{, }
+                    \StringTok{"(.*(quimi).*)"} \OtherTok{=} \StringTok{"A8"}\NormalTok{,}
+                    \StringTok{"(.*(adminis).*)"} \OtherTok{=} \StringTok{"A6"}\NormalTok{, }\StringTok{"(.*(educac).*)"} \OtherTok{=} \StringTok{"A3"}\NormalTok{,}
+                    \StringTok{"(.*(web).*)|(.*(mecatro).*)"} \OtherTok{=} \StringTok{"A7"}\NormalTok{,}
+                    \StringTok{"(.*(web).*)|(.*(aviaci).*)"} \OtherTok{=} \StringTok{"A7"}\NormalTok{,}
+                    \StringTok{"(.*([n/a]).*)"} \OtherTok{=} \StringTok{"no"}\NormalTok{)) }
+
+\CommentTok{\# Visualización de la segunda opción por áreas de conocimiento:}
+
+\NormalTok{data }\SpecialCharTok{\%\textless{}\textgreater{}\%} \FunctionTok{rename}\NormalTok{(., }\AttributeTok{segunda\_opcion  =}\NormalTok{ si\_su\_anterior\_respuesta\_es\_si\_indica\_cual)}
+
+\CommentTok{\# data$segunda\_opcion \%\textgreater{}\%  table() \%\textgreater{}\%  as.data.frame() \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & . & Freq \\ 
+  \hline
+1 & A1 &  12 \\ 
+  2 & A2 &   8 \\ 
+  3 & A3 &   6 \\ 
+  4 & A4 &  16 \\ 
+  5 & A5 &  14 \\ 
+  6 & A6 &  27 \\ 
+  7 & A7 &  66 \\ 
+  8 & A8 &   8 \\ 
+  9 & no & 108 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+una vez tenemos nuestras variables depuradas, ahora pasamos a generar un
+subset, es decir, otra base de datos con las variables que son
+relevantes para el problema (se quita la marca temporal de la fecha y
+hora de la encuesta).
+
+\hypertarget{base-de-datos-final}{%
+\section{Base de datos final}\label{base-de-datos-final}}
+
+Ahora sacamos las tres primeras columnas que corresponden a datos que no
+son relevantes:
+
+\begin{itemize}
+\item
+  X1: numeración de la fila
+\item
+  marca\_temporal: fecha y hora de la realización de la encuesta
+\item
+  por\_favor\_acepta\_nuestra\_politica\_de\_privacidad: aceptación de
+  los tratamientos de los datos.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Base de datos final:}
+\NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ data[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+ahora verificamos que todo este correcto en nuestro nuevo data set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cambiamos fluido por Fluido}
+\NormalTok{data[}\DecValTok{199}\NormalTok{,}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Fluido"}
+\NormalTok{data[}\DecValTok{16}\NormalTok{,}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Fluido"}
+
+\CommentTok{\# Convertimos en factor las siguientes variables:}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{genero\_al\_que\_pertenece }\SpecialCharTok{\%\textless{}\textgreater{}\%} \FunctionTok{factor}\NormalTok{()}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{tipo\_de\_colegio\_que\_estudia\_o\_estudio }\SpecialCharTok{\%\textless{}\textgreater{}\%} \FunctionTok{factor}\NormalTok{()}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{en\_que\_ano\_salio\_o\_saldra\_del\_colegio }\SpecialCharTok{\%\textless{}\textgreater{}\%}  \FunctionTok{factor}\NormalTok{()}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{trabaja\_actualmente }\SpecialCharTok{\%\textless{}\textgreater{}\%}  \FunctionTok{factor}\NormalTok{()}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{si\_su\_anterior\_respuesta\_es\_si\_su\_trabajo\_esta\_relacionado\_con\_la\_carrera\_a\_la\_cual\_se\_presento }\SpecialCharTok{\%\textless{}\textgreater{}\%}  \FunctionTok{factor}\NormalTok{()}
+
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{areas }\SpecialCharTok{\%\textless{}\textgreater{}\%} \FunctionTok{factor}\NormalTok{()}
+
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{escoja\_una\_de\_las\_siguientes\_razones\_por\_la\_que\_va\_a\_estudiar }\SpecialCharTok{\%\textless{}\textgreater{}\%} \FunctionTok{factor}\NormalTok{()}
+
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{seleccione\_la\_principal\_razon\_para\_la\_eleccion\_de\_la\_carrera\_anterior }\SpecialCharTok{\%\textless{}\textgreater{}\%} 
+  \FunctionTok{factor}\NormalTok{()}
+
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{le\_interesa\_otra\_carrera\_diferente\_a\_la\_que\_se\_presento }\SpecialCharTok{\%\textless{}\textgreater{}\%} \FunctionTok{factor}\NormalTok{()}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{segunda\_opcion }\SpecialCharTok{\%\textless{}\textgreater{}\%} \FunctionTok{factor}\NormalTok{()}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{la\_anterior\_carrera\_esta\_disponible\_en\_esta\_u\_otra\_universidad }\SpecialCharTok{\%\textless{}\textgreater{}\%} \FunctionTok{factor}\NormalTok{()}
+
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{cuenta\_con\_algun\_estudio\_curso\_tecnico\_entre\_otros\_certificable\_que\_este\_relacionado\_con\_la\_carrera\_que\_selecciono }\SpecialCharTok{\%\textless{}\textgreater{}\%} \FunctionTok{factor}\NormalTok{()}
+
+\CommentTok{\# Cambiamos algunos valores para evitar más categorías.}
+
+\NormalTok{data[}\DecValTok{144}\SpecialCharTok{:}\DecValTok{145}\NormalTok{,}\DecValTok{13}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\StringTok{"Todas las anteriores"}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Convertir a factor la ultima variable}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{universidad\_a\_la\_que\_aspira }\SpecialCharTok{\%\textless{}\textgreater{}\%}  \FunctionTok{factor}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Para ver un resumen rápido tipo \texttt{summary()} con la función skim
+de la librería que que lleva el mismo nombre tenemos la siguiente tabla:
+
+\begin{table}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{llrrlrl}
+\toprule
+skim\_type & skim\_variable & n\_missing & complete\_rate & factor.ordered & factor.n\_unique & factor.top\_counts\\
+\midrule
+factor & genero\_al\_que\_pertenece & 0 & 1.0000000 & FALSE & 4 & Fem: 150, Mas: 135, Flu: 4, Bin: 1\\
+factor & tipo\_de\_colegio\_que\_estudia\_o\_estudio & 0 & 1.0000000 & FALSE & 2 & Pub: 203, Pri: 87\\
+factor & en\_que\_ano\_salio\_o\_saldra\_del\_colegio & 0 & 1.0000000 & FALSE & 5 & 202: 240, 202: 38, 201: 9, 201: 2\\
+factor & trabaja\_actualmente & 0 & 1.0000000 & FALSE & 2 & No: 235, Si: 55\\
+factor & si\_su\_anterior\_respuesta\_es\_si\_su\_trabajo\_esta\_relacionado\_con\_la\_carrera\_a\_la\_cual\_se\_presento & 46 & 0.8413793 & FALSE & 2 & No: 209, Si: 35\\
+\addlinespace
+factor & areas & 0 & 1.0000000 & FALSE & 8 & A7: 165, A4: 32, A5: 27, A6: 17\\
+factor & escoja\_una\_de\_las\_siguientes\_razones\_por\_la\_que\_va\_a\_estudiar & 0 & 1.0000000 & FALSE & 11 & Me : 108, Qui: 92, Qui: 20, Con: 16\\
+factor & seleccione\_la\_principal\_razon\_para\_la\_eleccion\_de\_la\_carrera\_anterior & 0 & 1.0000000 & FALSE & 21 & Las: 105, Las: 55, Rec: 21, La : 20\\
+factor & le\_interesa\_otra\_carrera\_diferente\_a\_la\_que\_se\_presento & 0 & 1.0000000 & FALSE & 3 & Si: 170, No: 113, Pue: 7\\
+factor & segunda\_opcion & 25 & 0.9137931 & FALSE & 9 & no: 108, A7: 66, A6: 27, A4: 16\\
+\addlinespace
+factor & la\_anterior\_carrera\_esta\_disponible\_en\_esta\_u\_otra\_universidad & 0 & 1.0000000 & FALSE & 3 & Si: 263, No: 20, No : 7\\
+factor & cuenta\_con\_algun\_estudio\_curso\_tecnico\_entre\_otros\_certificable\_que\_este\_relacionado\_con\_la\_carrera\_que\_selecciono & 0 & 1.0000000 & FALSE & 2 & No: 194, Sí: 96\\
+factor & universidad\_a\_la\_que\_aspira & 12 & 0.9586207 & FALSE & 6 & Uni: 163, Uni: 105, Uni: 6, Tod: 2\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\hypertarget{analisuxeds-de-nuestras-variables}{%
+\section{Analisís de nuestras
+variables:}\label{analisuxeds-de-nuestras-variables}}
+
+antes de empezar el análisis tenemos que en la variable sexo esta se
+registra como ``Maculino'' y con la función siguiente cambiamos el valor
+a ``Masculino''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# change factor levels}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(data,}
+               \AttributeTok{genero\_al\_que\_pertenece =}
+                 \FunctionTok{refactor}\NormalTok{(genero\_al\_que\_pertenece,}
+                          \AttributeTok{levs =} \FunctionTok{c}\NormalTok{(}\StringTok{"Binario"}\NormalTok{,}\StringTok{"Femenino"}\NormalTok{,}\StringTok{"Fluido"}\NormalTok{),}
+                          \AttributeTok{repl =} \StringTok{"Masculino"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Base de datos organizada
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# filter and sort the dataset}
+\CommentTok{\# data \%\textgreater{}\%}
+\CommentTok{\#   select(genero\_al\_que\_pertenece:universidad\_a\_la\_que\_aspira) \%\textgreater{}\% head() \%\textgreater{}\%}
+\CommentTok{\#   xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlllllllllllll}
+  \hline
+ & genero\_al\_que\_pertenece & tipo\_de\_colegio\_que\_estudia & ano\_saldra\_del\_colegio
+ & trabaja\_actualmente &
+ su\_trabajo\_esta\_relacionado\_con\_la\_carrera\_a\_la\_cual\_se\_presento & areas &
+ razones\_por\_la\_que\_va\_a\_estudiar &
+ principal\_razon\_para\_la\_eleccion\_de\_la\_carrera & le\_interesa\_otra\_carrera &
+ segunda\_opcion & disponible\_en\_esta\_u\_otra\_universidad &
+ estudio\_curso\_tecnico\_entre\_otros\_certificable & universidad\_a\_la\_que\_aspira \\ 
+  \hline
+1 & Masculino & Publico & 2022 & No & No & A5 & Me interesa estudiar & Las asignaturas del pensum y las líneas de énfasis son de mi interés. & No & no & Si & Sí & Universidad Nacional de Colombia \\ 
+  2 & Masculino & Publico & 2022 & Si & No & A3 & Quiero superarme & Recomendación de un amigo & Si & A2 & No & No & Universidad Nacional de Colombia \\ 
+  3 & Masculino & Publico & 2022 & No & No & A7 & Quiero superarme & Los egresados de esta carrera consiguen empleo fácilmente & Si & A7 & Si & No & Universidad Nacional de Colombia \\ 
+  4 & Masculino & Publico & 2022 & No & No & A7 & Quiero ganar bien cuando sea profesionista & Las asignaturas del pensum y las líneas de énfasis son de mi interés. & Si & A7 & Si & Sí & Universidad Nacional de Colombia \\ 
+  5 & Masculino & Privado & 2022 & No & No & A6 & Me interesa estudiar & Las asignaturas del pensum y las líneas de énfasis son de mi interés. & No & no & Si & No & Universidad Nacional de Colombia \\ 
+  6 & Femenino & Publico & 2021 & No & No & A7 & Quiero superarme & Las asignaturas del pensum y las líneas de énfasis son de mi interés. & No & no & Si & No & Universidad Nacional de Colombia \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Aquí vemos el encabezado de nuestros datos, es decir, los primes 5 datos
+de nuestra base de datos de 290 observaciones.
+
+\hypertarget{tabla-de-frecuencias-con-su-respectivo-gruxe1fico-para-una-mejor-visualizaciuxf3n}{%
+\subsection{Tabla de Frecuencias, con su respectivo gráfico para una
+mejor
+visualización}\label{tabla-de-frecuencias-con-su-respectivo-gruxe1fico-para-una-mejor-visualizaciuxf3n}}
+
+Tabla y gráfico del genero alusivo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \StringTok{"genero\_al\_que\_pertenece"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\#result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & genero\_al\_que\_pertenece & n\_obs \\ 
+  \hline
+1 & Binario &   1 \\ 
+  2 & Femenino & 150 \\ 
+  3 & Fluido &   2 \\ 
+  4 & género fluido &   2 \\ 
+  5 & Maculino & 135 \\ 
+  6 & Total & 290 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Podemos notar que en la muestras tomada (de forma sistemática de 1-20)
+pudimos visualizar un mayor numero de mujeres que fueron más receptivas
+al momento de realizar la encuesta, además, contamos con algunos otros
+géneros que no son significativos como el Binario y el Fluido.
+
+Para el caso del tipo de colegio donde estudió o estudia:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \StringTok{"tipo\_de\_colegio\_que\_estudia\_o\_estudio"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\#result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & tipo\_de\_colegio\_que\_estudia\_o\_estudio & n\_obs \\ 
+  \hline
+1 & Privado &  87 \\ 
+  2 & Publico & 203 \\ 
+  3 & Total & 290 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Son mayoritarios los colegio que estudian en colegios del estado,
+revelando que la mayoría de los aspirantes a universidades publicas no
+vienen de colegios privados.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \StringTok{"en\_que\_ano\_salio\_o\_saldra\_del\_colegio"}\NormalTok{, }
+  \AttributeTok{normalize =} \StringTok{"total"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\# result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & en\_que\_ano\_salio\_o\_saldra\_del\_colegio & n\_obs \\ 
+  \hline
+1 & 2017 &   1 \\ 
+  2 & 2018 &   2 \\ 
+  3 & 2019 &   9 \\ 
+  4 & 2021 &  38 \\ 
+  5 & 2022 & 240 \\ 
+  6 & Total & 290 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Las promociones de 2022, siempre presentan un numero mayoritario en los
+aspirantes esto se debe al segundo corte o la prueba de final de año,
+para el ingreso en el 2023 esto lo decimos ya que podríamos afirmar que
+en le primer corte los aspirantes salieron del colegio en épocas
+diferentes, más homogeneidad.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \StringTok{"trabaja\_actualmente"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\# result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & trabaja\_actualmente & n\_obs \\ 
+  \hline
+1 & No & 235 \\ 
+  2 & Si &  55 \\ 
+  3 & Total & 290 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+En el segundo corte se esperan aspirantes que aun no han salido de
+estudiar, por ende la mayoría no cuenta con un trabajo, podríamos
+afirmar que para el primer corte del 2023 estos estudiantes que no
+ingresaron posiblemente estén laborando para entonces.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \StringTok{"areas"}\NormalTok{, }
+  \AttributeTok{tabsort =} \StringTok{"areas"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\# result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & areas & n\_obs \\ 
+  \hline
+1 & A1 &  15 \\ 
+  2 & A2 &  11 \\ 
+  3 & A3 &   8 \\ 
+  4 & A4 &  32 \\ 
+  5 & A5 &  27 \\ 
+  6 & A6 &  17 \\ 
+  7 & A7 & 165 \\ 
+  8 & A8 &  15 \\ 
+  9 & Total & 290 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Ahora una de las variables más importantes, es saber cuales son las
+aspiraciones en áreas de conocimiento de los que hicieron examen de
+admisión, por lo cual planteamos una vez más las diferentes áreas del
+saber, en las cuales se aterrorizan todas las carreras brindadas en el
+estado de Colombia:
+
+\begin{itemize}
+\item
+  A1 = Agronomía, Veterinaria y afines
+\item
+  A2 = Bellas Artes
+\item
+  A3 = Ciencias de la Educación
+\item
+  A4 = Ciencias de la Salud
+\item
+  A5 = Ciencias Sociales y Humanas
+\item
+  A6 = Economía, Administración, Contaduría y afines
+\item
+  A7 = Ingeniería, Arquitectura, Urbanismo y afines
+\item
+  A8 = Matemáticas y Ciencias Naturales
+\end{itemize}
+
+Ahora, observando la tabla tenemos que las ingenieras, arquitectura,
+urbanismo y afines, son el área más demanda de nuestra muestra.
+
+En parte era evidente ya que gran parte de las encuestas fueron
+realizadas en al UNAL sede Medellín, una universidad que la mayoría, por
+no decir todas las carreras son de esta área.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \StringTok{"escoja\_una\_de\_las\_siguientes\_razones\_por\_la\_que\_va\_a\_estudiar"}\NormalTok{, }
+  \AttributeTok{tabsort =} \StringTok{"desc(n\_obs)"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\# result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & escoja\_una\_de\_las\_siguientes\_razones\_por\_la\_que\_va\_a\_estudiar & n\_obs \\ 
+  \hline
+1 & Así lo hacen mis parientes, mis amigos, mi novio (a) &   1 \\ 
+  2 & Así lo quieren mis papás &   4 \\ 
+  3 & Con los estudios que tengo no podré conseguir un buen trabajo &  16 \\ 
+  4 & Es normal &   7 \\ 
+  5 & Me interesa estudiar & 108 \\ 
+  6 & Me va a dar prestigio. &  10 \\ 
+  7 & No tengo otra cosa que hacer &  12 \\ 
+  8 & Quiero ganar bien cuando sea profesionista &  14 \\ 
+  9 & Quiero superarme &  92 \\ 
+  10 & Quiero vivir más independiente de mi familia &  20 \\ 
+  11 & Un (a) maestro (a) me dijo que siguiera estudiando &   6 \\ 
+  12 & Total & 290 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Una de las razones por la cual los aspirantes desean entrar a una
+universidad es porque tienen un alto interés en superarse o bien en
+estudiar.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \StringTok{"seleccione\_la\_principal\_razon\_para\_la\_eleccion\_de\_la\_carrera\_anterior"}\NormalTok{, }
+  \AttributeTok{tabsort =} \StringTok{"desc(n\_obs)"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\# result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & seleccione\_la\_principal\_razon\_para\_la\_eleccion\_de\_la\_carrera\_anterior & n\_obs \\ 
+  \hline
+1 & Esta relacionado con temáticas que me apasionan &   2 \\ 
+  2 & Influencia familiar &  16 \\ 
+  3 & Interés propio &   1 \\ 
+  4 & La facilidad para el pago de esta carrera o para obtener becas &  20 \\ 
+  5 & Las asignaturas del pensum y las líneas de énfasis son de mi interés. & 105 \\ 
+  6 & Las materias de la carrera me llaman la atención &  55 \\ 
+  7 & llamativa &   1 \\ 
+  8 & Los egresados de esta carrera consiguen empleo fácilmente &  17 \\ 
+  9 & Los egresados de esta carrera son bien remunerados o tienen buenas ofertas laborales salariales. &  16 \\ 
+  10 & Me gusta &   1 \\ 
+  11 & Pasión de infancia &   3 \\ 
+  12 & Pasión desde la infancia &   3 \\ 
+  13 & Porque me apasiona &   1 \\ 
+  14 & Porque me gusta &   1 \\ 
+  15 & Quiero aprender a defender la palabra de Dios con la apologetica &   3 \\ 
+  16 & Quiero entender el mundo &   1 \\ 
+  17 & Recomendación de un amigo &  21 \\ 
+  18 & Seguir mi media tecnica y ganar dinero &   1 \\ 
+  19 & Tendencia &  13 \\ 
+  20 & vocación &   3 \\ 
+  21 & Vocación &   6 \\ 
+  22 & Total & 290 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Ahora esperamos que sea cierto que la mayoría de los aspirantes hayan
+leído el pensum, para decidir que esta es su linea de interés.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \StringTok{"cuenta\_con\_algun\_estudio\_curso\_tecnico\_entre\_otros\_certificable\_que\_este\_relacionado\_con\_la\_carrera\_que\_selecciono"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\# result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & cuenta\_con\_algun\_estudio\_curso\_tecnico\_certificable & n\_obs \\ 
+  \hline
+  1 & No & 194 \\ 
+  2 & Sí &  96 \\ 
+  3 & Total & 290 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Aunque creímos que los aspirantes para el 2023 no tendrían una
+fundamentación en el programa que eligieron, realmente nos dejaron
+sorprendidos al darnos cuenta que casi 100 personas tienen estudios que
+se relacionen con su carrera.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \StringTok{"le\_interesa\_otra\_carrera\_diferente\_a\_la\_que\_se\_presento"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\# result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & le\_interesa\_otra\_carrera\_diferente\_a\_la\_que\_se\_presento & n\_obs \\ 
+  \hline
+1 & No & 113 \\ 
+  2 & Puede ser &   7 \\ 
+  3 & Si & 170 \\ 
+  4 & Total & 290 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+La decisión de tomar una carrera y no una linea de conocimiento, es
+marcada en Colombia ya que observamos a personas cerradas en una
+carrera, aunque estos mismos después eran los que esperaban al menos dos
+universidades para ingresar a la misma carrera.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \StringTok{"universidad\_a\_la\_que\_aspira"}\NormalTok{, }
+  \AttributeTok{tabsort =} \StringTok{"desc(n\_obs)"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\# result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & universidad\_a\_la\_que\_aspira & n\_obs \\ 
+  \hline
+1 & Itm &   1 \\ 
+  2 & Todas las anteriores &   2 \\ 
+  3 & Universidad de Antioquia & 105 \\ 
+  4 & Universidad de Medellín &   1 \\ 
+  5 & Universidad Nacional de Colombia & 163 \\ 
+  6 & Universidad Nacional de Colombia, Universidad de Antioquia &   6 \\ 
+  7 & NA &  12 \\ 
+  8 & Total & 290 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Como dijimos anteriormente, la mayoría de nuestros encuestados fueron en
+la UNAL sede medellín, esto se debe a que hubo un mayor cobertura al
+ingresar en la universidad, lamentablemente no fue le caso de la UdeA,
+la gente fue menos receptiva.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"genero\_al\_que\_pertenece"}\NormalTok{, }
+    \StringTok{"areas"}
+\NormalTok{  ), }
+  \AttributeTok{data\_filter =} \StringTok{"genero\_al\_que\_pertenece \%in\% c(\textquotesingle{}Femenino\textquotesingle{}, \textquotesingle{}Masculino\textquotesingle{})"}\NormalTok{, }
+  \AttributeTok{tabsort =} \StringTok{"desc(Masculino)"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\# result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlrrr}
+  \hline
+ & areas & Masculino & Femenino & Total \\ 
+  \hline
+1 & A1 &   5 &   9 &  14 \\ 
+  2 & A2 &   5 &   5 &  10 \\ 
+  3 & A3 &   4 &   4 &   8 \\ 
+  4 & A4 &   9 &  22 &  31 \\ 
+  5 & A5 &  13 &  13 &  26 \\ 
+  6 & A6 &   6 &  11 &  17 \\ 
+  7 & A7 &  83 &  81 & 164 \\ 
+  8 & A8 &  10 &   5 &  15 \\ 
+  9 & Total & 135 & 150 & 285 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Tanto hombres como mujeres, prefieren las ingenierías, seguidas de las
+Ciencias Sociales y Humanas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"trabaja\_actualmente"}\NormalTok{, }
+    \StringTok{"cuenta\_con\_algun\_estudio\_curso\_tecnico\_entre\_otros\_certificable\_que\_este\_relacionado\_con\_la\_carrera\_que\_selecciono"}
+\NormalTok{  ), }
+  \AttributeTok{data\_filter =} \StringTok{"genero\_al\_que\_pertenece \%in\% c(\textquotesingle{}Femenino\textquotesingle{}, \textquotesingle{}Masculino\textquotesingle{})"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\# result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlrrr}
+  \hline
+ & cuenta\_con\_algun\_estudio\_curso\_tecnico\_certificable & No & Si & Total \\ 
+  \hline
+  1 & No & 154 &  35 & 189 \\ 
+  2 & Sí &  78 &  18 &  96 \\ 
+  3 & Total & 232 &  53 & 285 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Vemos como son muy pocos, exactamente 18 persona de las 290 que trabajan
+actualmente y este trabajo tiene que ver con la carrera seleccionada el
+día del examen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{pivotr}\NormalTok{(}
+\NormalTok{  data, }
+  \AttributeTok{cvars =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"tipo\_de\_colegio\_que\_estudia\_o\_estudio"}\NormalTok{, }
+    \StringTok{"escoja\_una\_de\_las\_siguientes\_razones\_por\_la\_que\_va\_a\_estudiar"}
+\NormalTok{  ), }
+  \AttributeTok{tabsort =} \StringTok{"desc(Publico)"}\NormalTok{, }
+  \AttributeTok{nr =} \ConstantTok{Inf}
+\NormalTok{)}
+\CommentTok{\# summary()}
+\CommentTok{\# result$tab\_freq \%\textgreater{}\% xtable()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlrrr}
+  \hline
+ & escoja\_una\_de\_las\_siguientes\_razones\_por\_la\_que\_va\_a\_estudiar & Privado & Publico & Total \\ 
+  \hline
+1 & Así lo hacen mis parientes, mis amigos, mi novio (a) &   0 &   1 &   1 \\ 
+  2 & Así lo quieren mis papás &   1 &   3 &   4 \\ 
+  3 & Con los estudios que tengo no podré conseguir un buen trabajo &   7 &   9 &  16 \\ 
+  4 & Es normal &   1 &   6 &   7 \\ 
+  5 & Me interesa estudiar &  37 &  71 & 108 \\ 
+  6 & Me va a dar prestigio. &   3 &   7 &  10 \\ 
+  7 & No tengo otra cosa que hacer &   3 &   9 &  12 \\ 
+  8 & Quiero ganar bien cuando sea profesionista &   2 &  12 &  14 \\ 
+  9 & Quiero superarme &  27 &  65 &  92 \\ 
+  10 & Quiero vivir más independiente de mi familia &   5 &  15 &  20 \\ 
+  11 & Un (a) maestro (a) me dijo que siguiera estudiando &   1 &   5 &   6 \\ 
+  12 & Total &  87 & 203 & 290 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Otra comparación que resulta llamativa es comparar el tipo de colegio en
+el que estudio o estudia y la razón por la cual quiere entrar a una
+universidad.
+
+Son muy parecidos en el conteo de los estudiantes que quieren superarse
+y les interesa estudiar que salieron de colegios públicos.
+
+\end{document}
