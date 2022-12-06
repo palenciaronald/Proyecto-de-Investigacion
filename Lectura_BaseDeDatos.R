@@ -102,6 +102,8 @@ for (i in 1:41) {
   print("===============")
 }
 
+dic0 <- data.frame(titulo,urls)
+
 
 
 
