@@ -1,0 +1,472 @@
+---
+title: "Análisis Descriptivo y Primeros modelos de la BD Final"
+author: "Daniel Villa - Ronald Palencia"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-location: left
+lang: es
+editor: visual
+execute: 
+  warning: false
+  cache: true
+df-print: paged
+link-external-newwindow: true
+---
+
+```{r include=FALSE, eval=TRUE}
+# Librerías Necesarias:
+library(tidyverse)
+library(magrittr)
+library(janitor)
+library(naniar)
+library(caret)
+library(psych)
+library(Hmisc)
+library(klaR)
+library(plotly)
+```
+
+# Introducción:
+
+Una vez creada la BD (Base de Datos) final *(todo el código esta en* `Join_BD.R`*)* en la cual se contienen las variables:
+
+-   Inscritos
+
+-   Admitidos
+
+-   Matriculados
+
+-   Graduados
+
+Procedemos a procesar los datos por medio de un análisis descriptivo e inferencia para entender mejor los datos.
+
+```{r}
+# Lectura de la base de datos
+
+load("base_total.RData")
+load('base_total0.RData')
+```
+
+Lamentablemente al unir las BD en una sola presentamos un inconveniente y es que el método de la función `merge` utilizado (y el único posible) es que cumpla todas las condiciones de las siguientes columnas:
+
+```{r}
+names(base_total)[1:16]
+```
+
+Por ende al ser tantas características tenemos que ningunas de las siguientes columnas presenta valores aledaños a los demás, es decir, no hay una fila que tenga datos en las columnas sin tener una o más con valores `NA`
+
+```{r}
+names(base_total)[17:21]
+```
+
+Por lo cual el análisis será individual, en parejas o en casos específicos tomando 3 variables (inscritos, admitidos y graduados).
+
+Por ultimo descartaremos inicialmente las variables `matriculados` y `primer_curso` ya que aun no encontramos como algún tipo de relevancia para este documento y su enfoque en la investigación final, además cabe aclarar que estas dos columnas afectan gravemente por la cantidad de NA's presentes.
+
+Veamos mejor un gráfico de representación de missing data.
+
+1.  Haremos un gráfico con todas las categorías para hacer nuestro unión en una sola BD
+
+```{r warning=FALSE, echo=FALSE}
+gg_miss_var(base_total[, 1:16])
+```
+
+2.  Haremos otro gráfico para las columnas que se añadieron (o mejor dicho, las únicas cuantitativas en nuestro dataset).
+
+```{r, echo=FALSE}
+gg_miss_var(base_total[, 17:21])
+```
+
+Como podemos ver hay demasiados valores faltantes por ende procedemos a crear una copia organizada de la BD original:
+
+```{r}
+copy <- base_total0[, -c(24, 25, 2, 7, 9, 11, 18, 2)]
+
+## valores lógicos si tienen na 
+aux <- complete.cases(copy)
+
+## base sin na
+copy_sin_na <- copy[aux, ]
+
+# Organizar y remplazar valores para una mejor BD:
+
+copy_sin_na$caracter_ies  <- str_replace_all(copy_sin_na$caracter_ies,
+                                             c("UNIVERSIDAD"  = "Universidad", 
+                                               "INSTITUCION UNIVERSITARIA/ESCUELA TECNOLOGICA"="Institución Universitaria/Escuela Tecnológica",
+                                               "INSTITUCIÓN UNIVERSITARIA/ESCUELA TECNOLÓGICA" = "Institución Universitaria/Escuela Tecnológica",
+                                               "INSTITUCION TECNOLOGICA" = 
+                                                 "Institución Tecnológica",
+                                               "INSTITUCIÓN TECNOLÓGICA" = 
+                                                 "Institución Tecnológica",
+                                               "INSTITUCION TECNICA PROFESIONAL" = 
+                                                 "Institución Técnica Profesional",
+                                               "INSTITUCIÓN TÉCNICA PROFESIONAL" = 
+                                                 "Institución Técnica Profesional"))
+
+
+#copy_sin_na$nivel_de_formacion %>% unique()
+
+copy_sin_na$nivel_de_formacion <-  str_replace_all(copy_sin_na$nivel_de_formacion,
+                                                   c("Universitaria" =
+                                                       "Universitario",
+                                                   "Tecnológica" = "Tecnólogo",
+                                                   "Tecnológico"  = "Tecnólogo"))
+
+copy_sin_na$metodologia <-  str_replace_all(copy_sin_na$metodologia,
+                                                   c("A distancia" = "Distancia",
+                                                     "Distancia (virtual)" = 
+                                                       "Distancia_virtual",
+                                                     "Distancia (tradicional)"  = 
+                                                       "Distancia"))
+
+
+
+copy_sin_na$departamento_de_oferta_del_programa <-
+  tolower(copy_sin_na$departamento_de_oferta_del_programa)
+
+copy_sin_na$departamento_de_oferta_del_programa <-
+  str_replace_all(copy_sin_na$departamento_de_oferta_del_programa, 
+                                  c("á" = "a", "é" = "e",
+                                    "í" = "i", "ó" = "o", "ú" = "u"))
+
+
+copy_sin_na$departamento_de_oferta_del_programa <-
+  str_replace_all(copy_sin_na$departamento_de_oferta_del_programa,
+                                            c("bogota d.c" = "bogota",
+                                              "bogota d.c." = "bogota",
+                                              "bogota, d.c." = "bogota",
+                                              "bogota." = "bogota"))
+
+copy_sin_na$inscritos %<>% as.numeric()
+copy_sin_na$admitidos %<>% as.numeric()
+copy_sin_na$graduados %<>% as.numeric()
+```
+
+# Descriptivas de variables categoricas:
+
+Como la mayoría de las variables en nuestra BD corresponden a caracterizaciones tales como el sexo, semestre, departamento, entre otras; observaremos inicialmente sin tener en cuenta las únicas variables cuantitativas (las ultimas columnas de nuestra base de datos)
+
+## Tabla de contigencia del Caracter de la IES vs Sector:
+
+```{r, echo=FALSE}
+xtabs(~caracter_ies+sector_ies, data = copy_sin_na) %>% as_tibble() %>%
+  pivot_wider(names_from = sector_ies, values_from = "n")
+```
+
+Como podemos ver hay más universidades que otro tipo de instituciones, además que las privadas cuentas con números mayores en el conteo de estudiantes que se inscribieron, admitieron y ahora son graduados de los años 2018, 2020 y 2021.
+
+Para ver ahora estos registros pero con el conteo de los inscritos por año
+
+```{r, echo=FALSE}
+xtabs(inscritos ~ caracter_ies+ano, data = copy_sin_na) %>% as_tibble() %>%
+  pivot_wider(names_from = ano, values_from = "n")
+```
+
+Como podemos ver los datos de Inscritos por año en las universidades ha disminuido, así como las otras instituciones al paso de los años.; Esto se debe a que estamos en una recuperación dado de que los datos desde el 2019 y comienzos del 2021 son de la pandemia por lo que mundialmente se registran casos de deserción.
+
+Ahora observaremos como la metodología virtual fluctuó y en que proporción por año en comparación con la presencialidad a la hora de ofrecer "x o y" carrera.
+
+referencia: [deserción en Colombia en 2020](https://udes.edu.co/images/micrositios/calidad/boletines/boletin_estadistico-9-2020.pdf)
+
+```{r, echo=FALSE}
+xtabs(~ metodologia+ano, data = copy_sin_na) %>% as_tibble() %>%
+  pivot_wider(names_from = ano, values_from = "n")
+```
+
+Los datos de la virtualidad se registran desde el año 2021, esto se le atribuye a que los registros pre-pandemia de estas carreras no eran tan relevantes por ser pocas y de poco interés del publico nacional; ahora una vez ocurrido el encierre y las actualizaciones a los servicios de comunicación como meet y zoom se nota un incremento representando aproximadamente el 10% en comparación de la presencialidad, la metodología a distancia también se afecto con la misma proporción y según fuentes ([Impacto de la transición de la educación tradicional a la virtual](https://www.elperiodicousa.com/impacto-de-la-transicion-de-la-educacion-tradicional-a-la-virtual/), [Educación virtual: ¿Más efectiva que clases presenciales?](https://www.lafm.com.co/educacion/educacion-virtual-son-mas-efectivas-que-clases-presenciales)) es inevitable los cambios a una nueva normalidad dependiendo de plataformas para capacitarse en algún área.
+
+
+Otra tabla interesante que sale como pregunta de la anterior es: ¿Cómo se vio afectado los graduados de pregrado por los años presentes según su metodología?
+
+
+```{r, echo=FALSE, include=TRUE, eval=TRUE}
+xtabs(graduados ~ metodologia+ano, data = copy_sin_na) %>% as_tibble() %>% 
+  pivot_wider(names_from = ano, values_from = "n")
+```
+
+Vemos que los números de los graduados son demasiado altos, sin comparar con la presencialidad, esto nos dice que más de 24 mil personas se graduaron de pregrado en el año 2021 en Colombia, este mismo caso ocurre con los casos de modalidad a distancia, ya que como dijimos anteriormente era un método casi necesario para no detener los estudios de estudiantes que gracias a esto las restricciones no fueron un impedimento; la pandemia presento una reducción en el 2021 por lo cual se nota una reducción con el año anterior y en el 2018.
+
+
+## Relación de Aspecto:
+
+En esta sección queremos sacar el cociente de los promedios entre admitidos/ingresados y graduados/admitidos, esto se hace con la finalidad de tener una proporción y compararlas entre ellas para saber el flujo que hay entre lo que entre y lo que sale en los casos anteriores.
+
+
+```{r,  echo=FALSE, include=TRUE, eval=TRUE}
+adm_ins <- copy_sin_na %>% aggregate(admitidos/inscritos~sector_ies+ano, mean)
+
+# Cociente entre admitidos e Inscritos
+adm_ins %>% 
+  pivot_wider(names_from = ano, values_from = "admitidos/inscritos")
+```
+
+En esta tabla vemos un cociente interesante para la comparación entre el número de inscritos y admitidos en los años 2018, 2020 y 2021, además con el interés de saber que tipo de instituciones hay menos igualdad en los accesos a la educación ya sea por examen o entrevista.
+
+Algo a destacar es el año 2018 y como las IES privadas admitieron un poco más de los estudiantes que se inscribieron ese mismo año, en contraste a las IES publicas que admitieron un poco más del 70% de los inscritos, además de que para el año 2021 bajo el porcentaje en los dos sectores.
+
+Esto puede ser un indicador de que las IES tanto publicas como privadas se han vuelto más selectivas (hasta un 20% de rigurosidad) a la hora de admitir un estudiante a una carrera de pregrado.
+
+```{r, echo=FALSE, include=TRUE, eval=TRUE}
+grad_ins <- copy_sin_na %>%
+  aggregate(graduados/admitidos~sector_ies+ano, mean) 
+
+# Cociente entre Graduados y admitidos
+grad_ins %>% 
+  pivot_wider(names_from = ano, values_from = "graduados/admitidos")
+```
+
+En este caso, este cociente refleja que los graduados en las IES privadas a pesar de enfrentar una pandemia siguieron graduando a sus estudiantes, para el caso de las IES publicas la tasa del 2020 fue muy baja, es decir, solo el 50% de los admitidos fueron graduados ese año, por lo que poco a poco representará una acumulación de estudiantes por año en las IES publicas, esto se puede ver en el año 2021 donde represento la tasa más alta de los tres años estudiados; podría decirse que es una porcentaje bueno pero solo muestra que una porción de estudiantes graduados del 2021 debieron graduarse en el 2020 como acumulación, dado de que cada IES se espera que tenga en proporción un flujo de admitidos a los graduados.
+
+# Serie de Admitidos y Graduados
+
+
+```{r warning=FALSE, message=FALSE}
+load("series.RData")
+
+p <- serie1 %>%
+  ggplot(aes(x=ano,y = total,
+             group = Estado_Estudiante,
+             colour = Estado_Estudiante,
+             shape = Estado_Estudiante))+
+  geom_point()+geom_line()+
+  scale_y_continuous(breaks = c(0,300000,600000,900000,1200000),
+                     labels = c(0,"300k", "600k", "900k", "1.2M"))+
+  labs(y = "Conteo Total", x = "Año",
+       title = "Serie anual del conteo total de estudiantes")+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+p %>% ggplotly()
+```
+
+
+El gráfico nos muestra una serie de tiempo del conteo total realizado por año según el estado del estudiante, esto nos da una idea general de la escala de los admitidos y graduados totales por año, con esto en mente decimos que el crecimiento de los admitidos por año se incremente de manera súbita, tanto que los años 2007 y 2011 son los que registran los picos locales para que tenga esta forma montañosa, ahora en comparación con los graduados notamos un crecimiento algo lineal y más normalizado.
+
+La comparativa muestra algo preocupante en el caso de los admitidos, de antemano se sabe que las IES no amplían sus instalaciones año tras año para recibir estudiantes de manera exponencial, más bien se crece gradualmente en el plazo mínimo de 2 a 4 años (si se cuenta con los recursos, como el caso de las IES privadas).
+
+Los graduados representan una escala más lineal y esto se debe a que es aplanada por los admitidos, por lo cual para nuestra problemática es algo a tener en cuenta dentro de los factores para que una persona escoja una carrera sobre otra y es el hecho de crear una tasa de las personas que se gradúan desde el punto de la deserción que presenta esa carrera en la IES especifica.
+
+
+# Modelo apriori apriori para los graduados:
+
+Una pregunta que nos cuestionamos fue el hecho de poder decir si la cantidad de graduados por año se podría modelar debido a su importancia, es decir, según las características históricas poder modelar el número total de graduados en un año para los estudiantes de pregrado.
+
+Antes que nada montamos un subset para la creación del modelo:
+
+```{r}
+mydata <- copy_sin_na %>% dplyr::select(principal_o_seccional, sector_ies,
+                                        caracter_ies,nivel_de_formacion,
+                                        metodologia,area_de_conocimiento,
+                                        nucleo_basico_del_conocimiento_nbc,
+                                        departamento_de_oferta_del_programa,
+                                        sexo, ano, semestre, inscritos, 
+                                        admitidos, graduados)
+
+
+# Cambiamos la estructura de algunas variables
+# para un mejor desarrollo del problema
+
+mydata <- mydata %>%
+  mutate_at(vars(graduados, inscritos, admitidos, ano), as.numeric) %>% 
+  mutate_at(vars(sexo, semestre, metodologia, nivel_de_formacion, caracter_ies,
+                 nucleo_basico_del_conocimiento_nbc, principal_o_seccional,
+                 sector_ies,
+                 area_de_conocimiento,
+                 departamento_de_oferta_del_programa), as.factor)
+```
+
+
+Aplicando el modelo de regresión tradicional con la función `lm()`, no hay un desarrollo claro, uno de los factores que no permite el desarrollo optimo de la función es la capacidad comunicacional de los computadores usados, por lo cual se toma otro desarrollo, aun así se deja planteado el código utilizado con la función `lm()`:
+
+```{r, eval=FALSE}
+# Fit the linear regression model por metodo tradicional
+model <- lm(graduados ~ ., data = mydata)
+
+
+summary(mydata)
+```
+
+ Nos decantamos al final por método de aprendizaje de maquina, esto también aplicando el desarrollo de una regresión, además uno de los beneficios de este tipo de métodos es la capacidad de particionar los datos para la validación de los mismos y poder calcular el sobre-ajuste .
+ 
+ 
+ Gracias a la librería `caret` desarrollamos la regresión por medio de la función `train()`, pero antes de la aplicación se particionan los datos:
+ 
+ 
+```{r}
+# Split the data into training and validation sets
+
+set.seed(123)
+
+split <- createDataPartition(mydata$graduados, p = 0.7, list = FALSE)
+train <- mydata[split, ]
+validate <- mydata[-split, ]
+```
+ 
+ Una vez los datos están en entrenamiento y validación aplicamos la función para la creación del modelo:
+ 
+```{r, warning=FALSE, message=FALSE}
+# Fit the linear regression model
+model <- train(graduados ~ ., data = train, method = "lm")
+```
+
+
+Este modelo presenta unas advertencias dado a la multicolinealidad de los datos, esto se debe a que los graduados dependen demasiado o en su totalidad de los ingresados y admitidos de ese año; esto se debe en parte a a la liberación de cupos por año que se da al graduarse un grupo de personas, por lo cual da espacio a la universidad de brindar atención en bienestar o en otras áreas como extensión para los nuevos admitidos.
+
+```{r, warning=FALSE, message=FALSE}
+# Make predictions on the validation set
+predictions <- predict(model, newdata = validate)
+  
+
+########### calculo de métricas de rendimiento
+
+# Calculate mean absolute error
+mae <- mean(abs(predictions - validate$graduados))
+
+# Calculate root mean squared error
+rmse <- sqrt(mean((predictions - validate$graduados)^2))
+
+# Calculate R-squared
+r2 <- 1 - (sum((predictions - validate$graduados)^2) / sum((validate$graduados - mean(validate$graduados))^2))
+```
+
+
+En el anterior bloque de código hacemos las predicciones de los datos para compararlas con los datos de validación y se calculan las respectivas métricas para observar que tan bueno es el modelo
+
+
+```{r}
+# Print the performance metrics
+print(paste("MAE:", mae))
+print(paste("RMSE:", rmse))
+print(paste("R-squared:", r2))
+```
+
+En las métricas vemos algo claramente bueno, es decir con el MAE y el RMSE dado a sus valores tan bajos, si nos dejamos llevar por el R-cuadrado no es relativamente bueno pero al observar el nivel de error el la diferencia de los reales vs los predichos tenemos que:
+
+
+```{r}
+## evaluando el  sobre-ajuste  usando el MAE
+
+train_predictions <- predict(model, newdata = train)
+validate_predictions <- predict(model, newdata = validate)
+
+# Calculate the MAE on the training and validation sets
+train_mae <- mean(abs(train_predictions - train$graduados))
+validate_mae <- mean(abs(validate_predictions - validate$graduados))
+
+# Calculate the percentage difference between the MAE on the training and validation sets
+difference <- 100 * (validate_mae - train_mae) / train_mae
+
+# Print the percentage difference
+print(paste("Percentage difference:", difference, "%"))
+```
+La diferencia porcentual de error es menor al 3% por lo cual este modelo cumple de buena manera (sin ningún tipo de intervención), lo que nos puede asegurar lo que esperábamos, la capacidad de modelar el número de graduados año tras año.
+
+
+> Nota: queda pendiente el hecho de la multicolinealidad entre las ultimas columnas
+
+# Clustering:
+
+
+Ahora otro tipo de método que decidimos aplicar es un cluster para la agrupaciones que se puedan dar en nuestra BD
+
+De antemano fijamos el número de cluster igual a 5
+
+```{r}
+# Set the number of clusters
+k <- 5
+```
+
+Aplicando el modelo por medio de la función `kmodes()` de la librería `klaR`, tenemos un cluster para las variables categóricas no codificadas
+
+
+```{r, warning=FALSE, message=FALSE}
+# Build the k-modes clustering model
+model <- kmodes(mydata, modes = k, iter.max = 20)
+
+
+# Print the cluster assignments
+print(paste("Cluster assignments:", model$cluster), max = 50)
+```
+
+
+Por ultimo vemos las asignaciones que se presento por los 5 cluster
+
+el segundo paso dentro de estos métodos es la realización visuales para un mejor entendimiento del cluster:
+
+```{r}
+# Subset calsificando por cluster
+mydata_clustered <- cbind(mydata, cluster = model$cluster)
+```
+
+Ahora aplicando una caracterización para ver como se comportan (porcentualmente) las variables categóricas en los respectivos cluster:
+
+```{r}
+### caracterización de los cluster
+####3 para la variable sexo
+
+p <- ggplot(mydata_clustered, aes(x = sexo, fill = sexo)) +
+  geom_bar(aes(y = (..count..)/sum(..count..)))+theme_minimal()+
+  facet_wrap(~ cluster)+theme(legend.position = "none")+
+  labs(y = "Porcentaje", x = "Sexo",
+                             title = "Facetado por Cluster")+
+  theme(legend.position = "none")
+
+p %>% ggplotly()
+```
+
+
+Podemos notar que en el cluster 1 y el cluster 4 es donde la mujeres priman en dichas categorías, mientras que para el cluster 2, 3 y 5 los hombres resaltan en su mayoría.
+
+
+```{r}
+#### resumen  numérico para las variables continuas
+by(mydata_clustered[, c("inscritos", "admitidos", "graduados")],
+   mydata_clustered$cluster, describe)
+```
+
+Por medio de la función `describe()` vemos un resumen numérico de los datos por cluster y algo a rescatar es su promedio por cada grupo creado, por lo cual decimos que el cluster 1 alberga más características con similitudes, pero a la vez es superado por el cluster número 5.
+
+
+```{r}
+####3 para la variable área del conocimiento 
+p <- ggplot(mydata_clustered, aes(x =area_de_conocimiento,
+                             fill = area_de_conocimiento)) +
+  geom_bar(aes(y = (..count..)/sum(..count..)))+theme_minimal()+
+  facet_wrap(~ cluster)+
+  labs(y = "Porcentaje", x = "Área de Conocimiento",
+       title = "Facetado por Cluster")+
+  theme(legend.position = "none",axis.text.x = element_blank())
+
+p %>% ggplotly()
+```
+
+Aquí vemos como predominan las áreas de conocimiento de más estudio en Colombia, tales como:
+
+* Economía, administración, contaduría y afines
+
+* Ingeniería, arquitectura, urbanismo y afines
+
+Con la primera categoría llevándose el mayor porcentaje en cada uno e los cluster, por lo cual solo se rescata que en las agrupaciones de la uno a la 5 no se vieron áreas que son predominantes hoy en día como las matemáticas y ciencias naturales
+
+```{r}
+####3 para la variable área del metodología
+
+p <- ggplot(mydata_clustered, aes(x =metodologia, fill = metodologia)) +
+  geom_bar(aes(y = (..count..)/sum(..count..)))+theme_minimal()+
+  facet_wrap(~ cluster)+labs(y = "Porcentaje", x = "Metodología",
+                             title = "Facetado por Cluster")+
+  theme(legend.position = "none",axis.text.x = element_blank())
+
+p %>% ggplotly()
+```
+
+Era de esperarse que la presencialidad es la metodología por excelencia en las agrupaciones, pero pensamos que la segunda iba a ser la virtualidad debido a la época de globalización actual, pero esta se ve desplazada por la distancia tradicional de estudiar independientemente para evaluarse fines de semana, siendo sinceros, esta metodología es muy prometedora dado a la precariedad de los Colombianos a la hora de estudiar o prepararse ya que tienen obligaciones como familias o trabajos que los impiden por lo cual es mejor a distancia y evaluaciones presenciales a la hora de obtener certificados o títulos.
+
+
+
+```{r, include=FALSE, eval=FALSE, echo=FALSE}
+save(list = ls(), file="describe_BD_Final.RData")
+```
+

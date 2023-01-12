@@ -1,5 +1,6 @@
 #load("pro_inv1.RData")
 
+library(tidyverse)
 library(magrittr)
 library(janitor)
 
@@ -928,10 +929,52 @@ base_total<-Reduce(merge_aux, list(base_inscritos_2000_2021,
                                    base_matriculados_pri_curs_2000_2021,
                                    base_graduados_2000_2021))
 
-by = names(base_admitidos_2000_2021)
 
-by[1:21]
+base_total$caracter_ies  <- str_replace_all(base_total$caracter_ies,
+                                             c("UNIVERSIDAD"  = "Universidad", 
+                                               "INSTITUCION UNIVERSITARIA/ESCUELA TECNOLOGICA"="Institución Universitaria/Escuela Tecnológica",
+                                               "INSTITUCIÓN UNIVERSITARIA/ESCUELA TECNOLÓGICA" = "Institución Universitaria/Escuela Tecnológica",
+                                               "INSTITUCION TECNOLOGICA" = "Institución Tecnológica",
+                                               "INSTITUCIÓN TECNOLÓGICA" = "Institución Tecnológica",
+                                               "INSTITUCION TECNICA PROFESIONAL" = "Institución Técnica Profesional",
+                                               "INSTITUCIÓN TÉCNICA PROFESIONAL" = "Institución Técnica Profesional"))
 
-prueba = inner_join(base_graduados_2000_2021, base_matriculados_2000_2021, by = by[1:21])
+
+
+base_total$nivel_de_formacion <-  str_replace_all(base_total$nivel_de_formacion,
+                                                   c("Universitaria" = "Universitario",
+                                                     "Tecnológica" = "Tecnólogo",
+                                                     "Tecnológico"  = "Tecnólogo"))
+
+base_total$metodologia <-  str_replace_all(base_total$metodologia,
+                                            c("A distancia" = "Distancia",
+                                              "Distancia (virtual)" = "Distancia_virtual",
+                                              "Distancia (tradicional)"  = "Distancia"
+                                            ))
+
+
+
+base_total$departamento_de_oferta_del_programa <- tolower(base_total$departamento_de_oferta_del_programa)
+
+base_total$departamento_de_oferta_del_programa <- str_replace_all(base_total$departamento_de_oferta_del_programa, 
+                                                                   c("á" = "a", "é" = "e", "í" = "i", "ó" = "o", "ú" = "u"))
+
+
+base_total$departamento_de_oferta_del_programa <-  str_replace_all(base_total$departamento_de_oferta_del_programa,
+                                                                    c("bogota d.c" = "bogota",
+                                                                      "bogota d.c." = "bogota",
+                                                                      "bogota, d.c." = "bogota",
+                                                                      "bogota." = "bogota"
+                                                                    ))
+
+base_total0 <- base_total
+base_total <- base_total0[, -c(2, 7, 9, 11, 18, 2)]
+base_total$inscritos %<>% as.numeric()
+base_total$admitidos %<>% as.numeric()
+base_total$graduados %<>% as.numeric()
+#save(base_total,file="base_total.RData")
+#save(base_total0,file="base_total0.RData")
+# library("writexl")
+
 
 
