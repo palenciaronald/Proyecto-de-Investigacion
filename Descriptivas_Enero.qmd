@@ -1,0 +1,152 @@
+---
+title: "-"
+author: "Daniel Villa - Ronald Palencia"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-location: left
+lang: es
+editor: visual
+execute: 
+  warning: false
+  cache: true
+df-print: paged
+link-external-newwindow: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r include=FALSE, eval=TRUE}
+# Librerías Necesarias:
+library(tidyverse)
+library(magrittr)
+library(janitor)
+library(readxl)
+library(tm)
+library(wordcloud)
+```
+
+En la primera parte de este documento se presentará la base de datos recolectada a partir de estudiantes activos en el curso de calculo integral en el semestre 2022-02, según la información suministrada por el profesor Victor en en semestre encontramos 500 estudiantes activos pero lamentablemente solo pudimos recolectar 117 registros (aprox. más del 20% de la población), por lo que esperamos que esta muestra (sin tomar técnicas de muestreo previas a la toma de los datos) explique la elección de la carrera que actualmente estudian y el por qué.
+
+```{r}
+# Lectura de la base de datos:
+BD_Integral2 <- read_excel("BD_Integral2.xlsx") %>% clean_names()
+```
+
+Los datos que se presentan fueron tomados del siguiente formulario: [Cuestionario (UNAL-Integral)](https://docs.google.com/forms/d/e/1FAIpQLSf_FD85g9xIkskpuXSZ5CKRVL4Hz-CXftuAOx6ZNkvrWABZWA/viewform)
+
+```{r}
+# Organización de la Base de datos:
+
+# Se elimina: Marca temporal
+BD_Integral2 <- BD_Integral2[,-1]
+
+# Conversión de las variables:
+BD_Integral2$genero %<>% factor()
+
+BD_Integral2$edad %<>% parse_number() %>%
+  factor(levels = 16:22,
+         labels = c(16:21, "22+"))
+
+
+BD_Integral2$egreso_de_un_colegio %<>% factor()
+
+BD_Integral2$realizo_preuniversitario_como_preparacion_para_el_examen_de_admision_de_la_universidad %<>% factor()
+
+BD_Integral2$trabaja_actualmente %<>% factor()
+
+BD_Integral2$si_trabajo_esta_relacionado_con_la_carrera_a_la_cual_se_presento %<>% factor()
+
+
+x <- BD_Integral2$si_trabajo_esta_relacionado_con_la_carrera_a_la_cual_se_presento %>% is.na() %>% which()
+
+BD_Integral2[x,7] <- "No aplica"
+
+# Estandarización de la cadenas de textos
+
+t <- BD_Integral2$programa_academico_que_cursa_actualmente %>%
+  toupper() %>% 
+  chartr("ÁÉÍÓÚ", "AEIOU", .) %>%
+  removePunctuation() %>% 
+  str_replace_all(., "[[:cntrl:]]", " ") %>% 
+  str_to_lower() %>% 
+  str_replace_all(., "-", " ") %>%
+  removeWords(., words  = stopwords("spanish")) %>% 
+  stripWhitespace(.)
+
+
+BD_Integral2$programa_academico_que_cursa_actualmente <- t %>% str_replace_all(.,"ing ", "ingenieria ") %>% 
+  str_replace_all(.,"ingeniera ", "ingenieria ") %>% 
+  str_replace_all(.,"ingagronomica",
+                  "ingenieria agronomica") %>% 
+  str_replace_all(.,"ingenieria agronomia",
+                  "ingenieria agronomica") %>%
+  str_replace_all(.,"ingenieria informatica",
+                  "ingenieria sistemas informatica") %>%
+  str_replace_all(., "metalurgica", "metalurgia") %>%
+  str_replace_all(., "ingenieria sistemas informatica",
+                  "ingenieria sistemas") %>%
+  str_replace_all(., "ingenieria minas metalurgia",
+                  "ingenieria minas") %>%
+  str_replace_all(., "sistemas", "sistema") %>% 
+  str_replace_all(., "sistema", "sistemas")
+
+
+BD_Integral2[5,8] <- "quimica farmaceutica"
+```
+
+
+Ahora crearemos un corpus para visualizar que palabras predominan dentro de la variable que especifica la carrera a la cual ingreso a la universidad: 
+
+```{r}
+BD_Integral2$programa_academico_que_cursa_actualmente %>%
+  VectorSource() %>% Corpus() %>%
+  wordcloud(., 
+          min.freq = 3,
+          max.words = 117, 
+          random.order = FALSE, 
+          colors = brewer.pal(name = "Dark2", n = 8)
+          )
+```
+
+
+Como podemos observar la palabra ingeniería es la que predomina nuestros datos, además la palabra economía aparece en un costado del gráfico y nos lleva a entender que este programa también es demandado a la par de ingeniería ambiental, biológica, administrativa y gastronómica.
+
+Este gráfico nos ayuda a ver de una manera diferente la frecuencia de los programas de aquellos que respondieron el cuestionario.
+
+Seguimos con el tratamiento de las siguientes variables:
+
+```{r}
+BD_Integral2$seleccione_la_principal_razon_para_la_eleccion_de_carrera %<>% factor()
+
+BD_Integral2$cuenta_con_algun_estudio_relacionado_con_el_area_del_programa_academico_seleccionado %<>% factor()
+
+BD_Integral2$cual_12 %<>% removePunctuation() %>%
+  toupper() %>% 
+  chartr("ÁÉÍÓÚ", "AEIOU", .) %>%
+  str_to_lower() %>%
+  str_replace_all(., "[[:cntrl:]]", " ") %>% 
+  str_replace_all(., "-", " ") %>%
+  removeWords(., words  = stopwords("spanish")) %>% 
+  stripWhitespace(.) %>%
+  str_replace_all(., "media tecnica", "media_tecnica") %>% 
+  str_replace_all(., " aplica", "No aplica") %>%
+  str_replace_all(., "na", "No aplica")
+
+x <- BD_Integral2$cual_12 %>% is.na() %>% which()
+
+BD_Integral2[x,11] <- "No aplica"
+BD_Integral2[34,11] <- "No aplica"
+
+BD_Integral2$le_interesa_otra_carrera_diferente_a_la_que_se_presento %<>% factor() 
+
+BD_Integral2$cual_14 %>%
+  toupper() %>% 
+  chartr("ÁÉÍÓÚ", "AEIOU", .) %>%
+  str_to_lower() %>%
+  str_replace_all(., "[[:cntrl:]]", " ") %>% 
+  str_replace_all(., "-", " ") %>%
+  removeWords(., words  = stopwords("spanish")) %>% 
+  stripWhitespace(.) %>% unique()
+```

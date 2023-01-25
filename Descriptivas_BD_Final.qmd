@@ -249,7 +249,7 @@ La comparativa muestra algo preocupante en el caso de los admitidos, de antemano
 Los graduados representan una escala más lineal y esto se debe a que es aplanada por los admitidos, por lo cual para nuestra problemática es algo a tener en cuenta dentro de los factores para que una persona escoja una carrera sobre otra y es el hecho de crear una tasa de las personas que se gradúan desde el punto de la deserción que presenta esa carrera en la IES especifica.
 
 
-# Modelo apriori apriori para los graduados:
+# Modelo apriori para los graduados:
 
 Una pregunta que nos cuestionamos fue el hecho de poder decir si la cantidad de graduados por año se podría modelar debido a su importancia, es decir, según las características históricas poder modelar el número total de graduados en un año para los estudiantes de pregrado.
 
