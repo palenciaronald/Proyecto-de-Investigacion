@@ -1,5 +1,5 @@
 ---
-title: "-"
+title: "Reporte técnico Enero"
 author: "Daniel Villa - Ronald Palencia"
 format:
   html:
@@ -141,12 +141,113 @@ BD_Integral2[34,11] <- "No aplica"
 
 BD_Integral2$le_interesa_otra_carrera_diferente_a_la_que_se_presento %<>% factor() 
 
-BD_Integral2$cual_14 %>%
+BD_Integral2$cual_14 %<>%
   toupper() %>% 
   chartr("ÁÉÍÓÚ", "AEIOU", .) %>%
   str_to_lower() %>%
   str_replace_all(., "[[:cntrl:]]", " ") %>% 
   str_replace_all(., "-", " ") %>%
   removeWords(., words  = stopwords("spanish")) %>% 
-  stripWhitespace(.) %>% unique()
+  stripWhitespace(.)
 ```
+
+
+Después de este corto análisis, se solicito una reunión para dar respuestas a las dudas y el enfoque que se le darán a estos datos ya que no responden con la problemática del proyecto, por lo cual ahora las tareas se basan una vez más en la recolección de los datos (esta vez con un panorama claro para que los datos respondan a lo solicitado).
+
+# Continuación descriptivas de los cluster creados:
+
+Ahora se procede a el mejoramiento para un análisis más profundo de los cluster creados en el informe de diciembre por lo cual se presenta el siguiente código:
+
+```{r}
+#Lectura de la base de datos que contiene la clusterización:
+load(file="mydata_clustered.RData")
+```
+
+Se realizan cambios respectivos para la creación de nuevos gráficos:
+
+```{r}
+mydata_clustered$sexo <- as.character(mydata_clustered$sexo)
+mydata_clustered$area_de_conocimiento <- as.character(mydata_clustered$area_de_conocimiento)
+mydata_clustered$sector_ies <- as.character(mydata_clustered$sector_ies)
+```
+
+Respectivo análisis con más de 2 variables
+
+## Gráfico 1
+
+```{r}
+# Use ggplot to create the chart
+ggplot(mydata_clustered, aes(x = cluster, y = graduados, fill = sexo)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~area_de_conocimiento, ncol = 2) +
+  scale_fill_manual(values = c("Hombre" = "blue", "Mujer" = "hotpink")) +
+  labs(x = "Cluster", y = "Number of students graduados", fill = "Sexo")
+```
+
+Del gráfico anterior podemos notar que las carreras que mas presentan mujeres son 
+las que están en el área de conocimiento de economía, administración, 
+contaduría y afines, de manera contraria a lo que sucede en esta área del conocimiento
+se presenta en el grupo de ingeniaría, arquitectura, urbanismo y afines, 
+adicionalmente se puede notara que el cluster uno es donde se presentan mas mujeres en todos las áreas del conocimiento.
+
+
+## Gráfico 2
+
+
+```{r}
+# Use ggplot to create the chart
+ggplot(mydata_clustered, aes(x = ano, y = admitidos, fill = "Admitidos")) +
+  geom_bar(stat = "identity", position = position_dodge()) + 
+  geom_bar(aes(x = ano, y = graduados, fill = "Graduados"), stat = "identity", position = position_dodge()) +
+  ggtitle("Bar plot of Admitidos and Graduados grouped by Cluster and Year") +
+  xlab("Year") +
+  ylab("Number of students") +
+  facet_wrap(~cluster) +
+  scale_fill_manual(values = c("Admitidos" = "blue", "Graduados" = "red"))
+```
+
+En la anterior gráfica se logra ver que en cluster 3, 1 y 5 es donde se 
+presenta mayor número de graduados en el 2021, adicionalmente el cluster 2
+sucede que el numero de graduados es mayor en todos los años que el número
+de admitidos, esto puede ver a que en algunas universidades se presentaba 
+una represalia de estudiantes.
+
+## Gráfico 3
+
+
+```{r}
+# Use ggplot to create the chart
+ggplot(mydata_clustered, aes(x = ano, y = graduados, fill = sector_ies)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  ggtitle("Bar plot of Graduados grouped by Cluster, Year and sector_ies") +
+  xlab("Year") +
+  ylab("Number of students graduados") +
+  facet_wrap(~cluster) +
+  scale_fill_manual(values = c("OFICIAL" = "blue", "PRIVADA" = "springgreen4")) +
+  guides(fill=guide_legend(title="Sector"))
+```
+
+De la gráfica anterior se observa los siguiente: en primer lugar que 
+para el cluster 1 y 3 el número de graduados en las universidades privadas es mayor
+que las publicas en 2018, 2019, 2020 y 2021, en segundo lugar se observa que para los 
+cluster 2 y 5 la cantidad de graduados es mayor en universidades publicas
+que en las privadas, finalmente se observa que la diferencia de graduados es significativa visualmente de la cantidad de graduados de las universidades publicas respecto a las privadas.
+
+## Gráfico 4
+
+```{r}
+# Use ggplot to create the chart
+ggplot(mydata_clustered, aes(x = admitidos, y = graduados, color = sector_ies)) +
+  geom_point() +
+  ggtitle("Scatter plot of Admitidos and Graduados grouped by Cluster and sector_ies") +
+  xlab("Admitidos") +
+  ylab("Graduados") +
+  facet_wrap(~cluster) +
+  scale_color_manual(values = c("OFICIAL" = "blue", "PRIVADA" = "springgreen4"))
+```
+
+De la gráfica anterior se logra observa la relación que presenta el número de
+graduados respecto al número de admitidos en las universidades publicas y privadas. 
+
+Para el cluster 1 y 3 se ve unas relación leve creciente, sin embargo no es clara, por ultimo para los cluster restantes no se logra visualizar algún patrón relevante.
+
