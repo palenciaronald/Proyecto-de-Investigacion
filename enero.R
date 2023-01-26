@@ -47,9 +47,3 @@ admi_gra <- cbind(admi_gra, aux)
 rm(copy, aux)
 
 save(ins_admi, admi_gra, file= "nuevasBD.RData")
-
-
-
-
-
-
