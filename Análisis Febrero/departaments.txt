@@ -1,0 +1,34 @@
+Departaments
+Amazonas
+Antioquia
+Arauca
+Atlántico
+Bogotá, D.C.
+Bolívar
+Boyacá
+Caldas
+Caquetá
+Casanare
+Cauca
+Cesar
+Chocó
+Córdoba
+Cundinamarca
+Guainía
+Guaviare
+Huila
+La Guajira
+Magdalena
+Meta
+Nariño
+Norte De Santander
+Putumayo
+Quindio
+Risaralda
+San Andrés
+Santander
+Sucre
+Tolima
+Valle Del Cauca
+Vaupés
+Vichada

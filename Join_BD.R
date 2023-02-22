@@ -361,16 +361,15 @@ dimensiones_iscritos <- c(dim(url37)[2], dim(url38)[2], dim(url39)[2], dim(url40
                           dim(url41)[2], dim(url9)[2],dim(url3)[2], dim(url14)[2]) 
 
 
-variables_interes <- c(2,3,6,7,8,9,10,13,14,16,18,20,21,23,24,30,35,37,38,39)
+variables_interes <- c(2,3,6,7,8,9,10,13,14,16,18,20,21,23,24,30,31,35,37,38,39)
 
-names(url3) == names(url39)
 
 names(url3)[26:39]
-names(url39)[26:33]
+names(url39)[25:33]
 
-variables_dif <- c("desc_cine_campo_amplio", "id_cine_campo_especifico",
+variables_dif <- c("id_cine_campo_amplio", "desc_cine_campo_amplio", "id_cine_campo_especifico",
                    "desc_cine_campo_especifico", "id_cine_codigo_detallado" ,
-                   "desc_cine_codigo_detallado", "codigo_del_departamento_programa") 
+                   "desc_cine_codigo_detallado") 
 
 
 library(tidyverse)
@@ -389,7 +388,8 @@ names(url41) = names(url3_f)
 names(url9_f) = names(url3_f)
 names(url14_f) = names(url3_f)
 
-base_inscritos_2014_2021 <- rbind(url37, url38, url39, url40, url41, url3_f, url9_f, url14_f)
+base_inscritos_2014_2021 <- rbind(url37, url38, url39, url40, url41, url14_f,
+                                  url9_f, url3_f)
 
 
 
@@ -918,7 +918,6 @@ base_graduados_2000_2021 <- base_graduados_2000_2021[,c(macht_variables[-22],
 #      file = "BDs_Finales.RData")
 # 
 # rm(list = ls())
-
 # load("BDs_Finales.RData")
 
 merge_aux <- function(...) merge (..., all=TRUE)

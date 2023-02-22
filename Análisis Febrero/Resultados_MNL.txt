@@ -1,0 +1,525 @@
+Start:  AIC=6833.16
+area_de_conocimiento ~ 0 + sector_ies + comparacion + metodologia + 
+    semestre + ano + sexo + demanda_real + admitidos + demanda_potencial
+
+trying - sector_ies 
+# weights:  248 (210 variable)
+initial  value 4553.976976 
+iter  10 value 4262.389012
+iter  20 value 4256.389768
+iter  20 value 4256.389747
+iter  30 value 4165.140227
+iter  40 value 4164.624997
+iter  50 value 3601.805859
+iter  60 value 3409.324742
+iter  70 value 3318.830185
+iter  80 value 3269.332302
+iter  90 value 3264.965489
+iter 100 value 3264.403012
+final  value 3264.403012 
+stopped after 100 iterations
+trying - comparacion 
+# weights:  248 (210 variable)
+initial  value 4553.976976 
+iter  10 value 4262.389043
+iter  20 value 4256.390324
+iter  30 value 4029.863472
+iter  40 value 3896.342700
+iter  50 value 3789.219409
+iter  60 value 3743.695468
+iter  70 value 3732.179433
+iter  80 value 3730.261073
+iter  90 value 3729.958782
+iter 100 value 3729.950518
+final  value 3729.950518 
+stopped after 100 iterations
+trying - metodologia 
+# weights:  240 (203 variable)
+initial  value 4553.976976 
+iter  10 value 4262.389028
+iter  20 value 4256.390047
+iter  30 value 4047.497092
+iter  40 value 3929.468204
+iter  50 value 3823.870318
+iter  60 value 3780.227209
+iter  70 value 3767.751370
+iter  80 value 3766.013607
+iter  90 value 3765.892737
+iter 100 value 3765.886738
+final  value 3765.886738 
+stopped after 100 iterations
+trying - semestre 
+# weights:  248 (210 variable)
+initial  value 4553.976976 
+iter  10 value 4262.388995
+iter  20 value 4256.389489
+iter  30 value 3907.811485
+iter  40 value 3702.018692
+iter  50 value 3526.378034
+iter  60 value 3360.717589
+iter  70 value 3276.711013
+iter  80 value 3259.151617
+iter  90 value 3256.482274
+iter 100 value 3254.436548
+final  value 3254.436548 
+stopped after 100 iterations
+trying - ano 
+# weights:  88 (70 variable)
+initial  value 4553.976976 
+iter  10 value 4262.388984
+iter  20 value 4256.389292
+iter  30 value 3923.379063
+iter  40 value 3723.991705
+iter  50 value 3503.027973
+iter  60 value 3385.599405
+iter  70 value 3305.061107
+iter  80 value 3294.923393
+iter  90 value 3294.405915
+final  value 3294.405123 
+converged
+trying - sexo 
+# weights:  248 (210 variable)
+initial  value 4553.976976 
+iter  10 value 4262.388993
+iter  20 value 4256.389447
+iter  30 value 3900.934925
+iter  40 value 3700.440807
+iter  50 value 3509.937623
+iter  60 value 3346.893208
+iter  70 value 3281.248140
+iter  80 value 3263.268385
+iter  90 value 3260.340997
+iter 100 value 3257.998351
+final  value 3257.998351 
+stopped after 100 iterations
+trying - demanda_real 
+# weights:  248 (210 variable)
+initial  value 4553.976976 
+iter  10 value 4266.176601
+iter  20 value 3975.944718
+iter  30 value 3776.172940
+iter  40 value 3593.583269
+iter  50 value 3476.963204
+iter  60 value 3395.528122
+iter  70 value 3361.162840
+iter  80 value 3352.203094
+iter  90 value 3349.146792
+iter 100 value 3348.791116
+final  value 3348.791116 
+stopped after 100 iterations
+trying - admitidos 
+# weights:  248 (210 variable)
+initial  value 4553.976976 
+iter  10 value 4319.574740
+iter  20 value 4104.480150
+iter  30 value 3880.196694
+iter  40 value 3639.306114
+iter  50 value 3495.740471
+iter  60 value 3398.203174
+iter  70 value 3362.617270
+iter  80 value 3345.528913
+iter  90 value 3335.234271
+iter 100 value 3334.113250
+final  value 3334.113250 
+stopped after 100 iterations
+trying - demanda_potencial 
+# weights:  248 (210 variable)
+initial  value 4553.976976 
+iter  10 value 4268.932663
+iter  20 value 4038.181834
+iter  30 value 3779.230993
+iter  40 value 3596.104062
+iter  50 value 3459.969405
+iter  60 value 3347.523108
+iter  70 value 3305.031214
+iter  80 value 3294.461707
+iter  90 value 3292.688399
+iter 100 value 3290.829179
+final  value 3290.829179 
+stopped after 100 iterations
+                     Df      AIC
+- ano                70 6728.810
+- semestre          161 6830.873
+<none>              168 6833.158
+- sexo              161 6837.997
+- sector_ies        161 6850.806
+- demanda_potencial 161 6903.658
+- admitidos         161 6990.226
+- demanda_real      161 7019.582
+- comparacion       161 7781.901
+- metodologia       154 7839.773
+
+Step:  AIC=6728.81
+area_de_conocimiento ~ sector_ies + comparacion + metodologia + 
+    semestre + sexo + demanda_real + admitidos + demanda_potencial - 
+    1
+
+trying - sector_ies 
+# weights:  80 (63 variable)
+initial  value 4553.976976 
+iter  10 value 4262.389017
+iter  20 value 4256.389859
+iter  30 value 3955.382452
+iter  40 value 3728.425700
+iter  50 value 3523.347535
+iter  60 value 3357.898842
+iter  70 value 3312.799891
+iter  80 value 3312.048079
+final  value 3312.044624 
+converged
+trying - comparacion 
+# weights:  80 (63 variable)
+initial  value 4553.976976 
+iter  10 value 4262.389049
+iter  20 value 4256.390415
+iter  30 value 4048.481107
+iter  40 value 3919.867926
+iter  50 value 3821.086623
+iter  60 value 3782.458682
+iter  70 value 3773.262952
+iter  80 value 3773.223905
+iter  90 value 3773.196382
+final  value 3773.196017 
+converged
+trying - metodologia 
+# weights:  72 (56 variable)
+initial  value 4553.976976 
+iter  10 value 4262.389033
+iter  20 value 4256.390138
+iter  30 value 4054.543815
+iter  40 value 3938.868544
+iter  50 value 3842.807382
+iter  60 value 3797.141656
+iter  70 value 3791.806053
+final  value 3791.802082 
+converged
+trying - semestre 
+# weights:  80 (63 variable)
+initial  value 4553.976976 
+iter  10 value 4262.389000
+iter  20 value 4256.389580
+iter  30 value 3926.673396
+iter  40 value 3730.277866
+iter  50 value 3500.879578
+iter  60 value 3352.339419
+iter  70 value 3303.562834
+iter  80 value 3300.893656
+iter  90 value 3300.884644
+iter  90 value 3300.884614
+iter  90 value 3300.884613
+final  value 3300.884613 
+converged
+trying - sexo 
+# weights:  80 (63 variable)
+initial  value 4553.976976 
+iter  10 value 4262.388999
+iter  20 value 4256.389538
+iter  30 value 3923.423299
+iter  40 value 3724.082285
+iter  50 value 3509.890049
+iter  60 value 3347.332413
+iter  70 value 3306.538979
+iter  80 value 3303.996810
+iter  90 value 3303.988175
+final  value 3303.988107 
+converged
+trying - demanda_real 
+# weights:  80 (63 variable)
+initial  value 4553.976976 
+iter  10 value 4266.176623
+iter  20 value 3998.275630
+iter  30 value 3782.820203
+iter  40 value 3623.646883
+iter  50 value 3477.387383
+iter  60 value 3413.084847
+iter  70 value 3398.571166
+iter  80 value 3398.469296
+iter  80 value 3398.469276
+iter  80 value 3398.469276
+final  value 3398.469276 
+converged
+trying - admitidos 
+# weights:  80 (63 variable)
+initial  value 4553.976976 
+iter  10 value 4319.574746
+iter  20 value 4126.745503
+iter  30 value 3842.032022
+iter  40 value 3644.446839
+iter  50 value 3469.697864
+iter  60 value 3420.834569
+iter  70 value 3389.973722
+iter  80 value 3389.417302
+final  value 3389.414832 
+converged
+trying - demanda_potencial 
+# weights:  80 (63 variable)
+initial  value 4553.976976 
+iter  10 value 4268.932668
+iter  20 value 4056.794860
+iter  30 value 3847.728375
+iter  40 value 3632.868897
+iter  50 value 3463.344196
+iter  60 value 3351.838466
+iter  70 value 3332.810997
+iter  80 value 3331.698685
+final  value 3331.695226 
+converged
+                    Df      AIC
+- semestre          63 6727.769
+<none>              70 6728.810
+- sexo              63 6733.976
+- sector_ies        63 6750.089
+- demanda_potencial 63 6789.390
+- admitidos         63 6904.830
+- demanda_real      63 6922.939
+- comparacion       63 7672.392
+- metodologia       56 7695.604
+
+Step:  AIC=6727.77
+area_de_conocimiento ~ sector_ies + comparacion + metodologia + 
+    sexo + demanda_real + admitidos + demanda_potencial - 1
+
+trying - sector_ies 
+# weights:  72 (56 variable)
+initial  value 4553.976976 
+iter  10 value 4262.389032
+iter  20 value 4256.390146
+iter  30 value 3974.933144
+iter  40 value 3721.016002
+iter  50 value 3566.119581
+iter  60 value 3322.644722
+iter  70 value 3318.562770
+iter  80 value 3318.387247
+final  value 3318.387123 
+converged
+trying - comparacion 
+# weights:  72 (56 variable)
+initial  value 4553.976976 
+iter  10 value 4262.389064
+iter  20 value 4256.390700
+iter  30 value 4057.572764
+iter  40 value 3916.929297
+iter  50 value 3810.666796
+iter  60 value 3776.935296
+iter  70 value 3776.731801
+iter  80 value 3776.687365
+final  value 3776.685820 
+converged
+trying - metodologia 
+# weights:  64 (49 variable)
+initial  value 4553.976976 
+iter  10 value 4262.389049
+iter  20 value 4256.390424
+iter  30 value 4058.574461
+iter  40 value 3946.953770
+iter  50 value 3818.533361
+iter  60 value 3797.767576
+final  value 3797.645888 
+converged
+trying - sexo 
+# weights:  72 (56 variable)
+initial  value 4553.976976 
+iter  10 value 4262.389014
+iter  20 value 4256.389825
+iter  30 value 3950.202788
+iter  40 value 3731.661715
+iter  50 value 3445.104361
+iter  60 value 3314.577135
+iter  70 value 3310.303533
+iter  80 value 3310.220282
+final  value 3310.220196 
+converged
+trying - demanda_real 
+# weights:  72 (56 variable)
+initial  value 4553.976976 
+iter  10 value 4266.176694
+iter  20 value 4017.344090
+iter  30 value 3798.025875
+iter  40 value 3633.885660
+iter  50 value 3469.792764
+iter  60 value 3405.784331
+iter  70 value 3403.608639
+final  value 3403.607426 
+converged
+trying - admitidos 
+# weights:  72 (56 variable)
+initial  value 4553.976976 
+iter  10 value 4319.574766
+iter  20 value 4127.758136
+iter  30 value 3863.775971
+iter  40 value 3647.939651
+iter  50 value 3466.160512
+iter  60 value 3403.679120
+iter  70 value 3395.392887
+iter  80 value 3395.362368
+final  value 3395.362287 
+converged
+trying - demanda_potencial 
+# weights:  72 (56 variable)
+initial  value 4553.976976 
+iter  10 value 4268.932680
+iter  20 value 4059.027165
+iter  30 value 3842.460477
+iter  40 value 3650.133809
+iter  50 value 3459.084562
+iter  60 value 3344.281709
+iter  70 value 3341.865402
+iter  80 value 3341.825151
+final  value 3341.824948 
+converged
+                    Df      AIC
+<none>              63 6727.769
+- sexo              56 6732.440
+- sector_ies        56 6748.774
+- demanda_potencial 56 6795.650
+- admitidos         56 6902.725
+- demanda_real      56 6919.215
+- comparacion       56 7665.372
+- metodologia       49 7693.292
+----------------------------------------------------
+Backward stepwise selection of variables
+----------------------------------------------------
+Multinomial logistic regression (MNL)
+Data                 : sum.tot
+Response variable    : area_de_conocimiento
+Base level           : ingenieria arquitectura urbanismo afines in area_de_conocimiento
+Explanatory variables: sector_ies, comparacion, metodologia, semestre, ano, sexo, demanda_real, admitidos, demanda_potencial 
+Null hyp.: there is no effect of x on area_de_conocimiento
+Alt. hyp.: there is an effect of x on area_de_conocimiento
+
+                                                                                 RRR coefficient std.error                z.value p.value    
+              agronomia veterinaria afines sector_ies|oficial                  0.000      -8.434     0.000         -225308321.359  < .001 ***
+              agronomia veterinaria afines sector_ies|privada                  0.000      -9.384     0.000         -106931342.344  < .001 ***
+              agronomia veterinaria afines comparacion|otras IES          155791.658      11.956     0.000           85125756.124  < .001 ***
+              agronomia veterinaria afines metodologia|presencial          22389.463      10.016     0.000           80857256.446  < .001 ***
+              agronomia veterinaria afines metodologia|presencial-virtual      0.000     -13.590     0.000   -409364953705890.688  < .001 ***
+              agronomia veterinaria afines sexo|masculino                      0.552      -0.594     0.000           -7939888.781  < .001 ***
+              agronomia veterinaria afines demanda_real                        1.000      -0.000     0.000                 -8.049  < .001 ***
+              agronomia veterinaria afines admitidos                           0.999      -0.001     0.000                 -6.589  < .001 ***
+              agronomia veterinaria afines demanda_potencial                   0.998      -0.002     0.000                 -4.611  < .001 ***
+                              bellas artes sector_ies|oficial                  0.001      -7.165     0.000         -233045159.761  < .001 ***
+                              bellas artes sector_ies|privada                  0.000      -7.689     0.000         -341720291.530  < .001 ***
+                              bellas artes comparacion|otras IES           16753.435       9.726     0.000          408493261.391  < .001 ***
+                              bellas artes metodologia|presencial           4532.208       8.419     0.000          100590852.255  < .001 ***
+                              bellas artes metodologia|presencial-virtual      0.000     -13.139     0.000   -833724284104717.625  < .001 ***
+                              bellas artes sexo|masculino                      0.564      -0.573     0.000          -20213033.654  < .001 ***
+                              bellas artes demanda_real                        1.000      -0.000     0.000                 -8.498  < .001 ***
+                              bellas artes admitidos                           0.999      -0.001     0.000                 -4.904  < .001 ***
+                              bellas artes demanda_potencial                   0.999      -0.001     0.000                 -4.954  < .001 ***
+                        ciencias educacion sector_ies|oficial                  0.001      -6.518     0.000         -385776390.192  < .001 ***
+                        ciencias educacion sector_ies|privada                  0.002      -6.487     0.000         -100605361.713  < .001 ***
+                        ciencias educacion comparacion|otras IES            4724.347       8.460     0.000          119938642.430  < .001 ***
+                        ciencias educacion metodologia|presencial            348.476       5.854     0.000           41093852.761  < .001 ***
+                        ciencias educacion metodologia|presencial-virtual      0.000     -12.956     0.000  -4254614534649947.000  < .001 ***
+                        ciencias educacion sexo|masculino                      0.674      -0.394     0.000          -30056333.269  < .001 ***
+                        ciencias educacion demanda_real                        1.000      -0.000     0.000                 -5.931  < .001 ***
+                        ciencias educacion admitidos                           0.999      -0.001     0.000                 -8.925  < .001 ***
+                        ciencias educacion demanda_potencial                   1.000      -0.000     0.000                 -1.396   0.163    
+                            ciencias salud sector_ies|oficial                  0.008      -4.789     0.000         -154653371.356  < .001 ***
+                            ciencias salud sector_ies|privada                  0.012      -4.464     0.000         -351759463.133  < .001 ***
+                            ciencias salud comparacion|otras IES             331.288       5.803     0.000          482286442.186  < .001 ***
+                            ciencias salud metodologia|presencial            170.064       5.136     0.000           69090772.914  < .001 ***
+                            ciencias salud metodologia|presencial-virtual      0.000     -12.262     0.000  -3967885483602754.500  < .001 ***
+                            ciencias salud sexo|masculino                      0.866      -0.143     0.000          -14385721.206  < .001 ***
+                            ciencias salud demanda_real                        1.000       0.000     0.000                  1.467   0.142    
+                            ciencias salud admitidos                           0.999      -0.001     0.000                -10.896  < .001 ***
+                            ciencias salud demanda_potencial                   1.000      -0.000     0.000                 -1.801   0.072 .  
+                 ciencias sociales humanas sector_ies|oficial                  0.136      -1.997     0.000         -150503441.077  < .001 ***
+                 ciencias sociales humanas sector_ies|privada                  0.140      -1.968     0.000          -46412287.296  < .001 ***
+                 ciencias sociales humanas comparacion|otras IES              14.120       2.648     0.000           35196889.255  < .001 ***
+                 ciencias sociales humanas metodologia|presencial              8.408       2.129     0.000           41742407.160  < .001 ***
+                 ciencias sociales humanas metodologia|presencial-virtual      0.000     -12.239     0.000 -21535329789193028.000  < .001 ***
+                 ciencias sociales humanas sexo|masculino                      1.021       0.021     0.000             904334.311  < .001 ***
+                 ciencias sociales humanas demanda_real                        1.000      -0.000     0.000                 -1.902   0.057 .  
+                 ciencias sociales humanas admitidos                           1.000      -0.000     0.000                 -5.132  < .001 ***
+                 ciencias sociales humanas demanda_potencial                   1.000       0.000     0.000                  0.179   0.858    
+ economia administracion contaduria afines sector_ies|oficial                  2.166       0.773     0.000           29866140.550  < .001 ***
+ economia administracion contaduria afines sector_ies|privada                  2.198       0.787     0.000           20283112.874  < .001 ***
+ economia administracion contaduria afines comparacion|otras IES               0.363      -1.014     0.000          -16945197.735  < .001 ***
+ economia administracion contaduria afines metodologia|presencial              0.419      -0.870     0.000          -15057304.639  < .001 ***
+ economia administracion contaduria afines metodologia|presencial-virtual      0.000      -9.994     0.000  -7775508546729713.000  < .001 ***
+ economia administracion contaduria afines sexo|masculino                      1.119       0.113     0.000           27588129.637  < .001 ***
+ economia administracion contaduria afines demanda_real                        1.000      -0.000     0.000                 -0.345   0.730    
+ economia administracion contaduria afines admitidos                           1.000      -0.000     0.000                 -0.507   0.612    
+ economia administracion contaduria afines demanda_potencial                   1.000       0.000     0.000                  4.457  < .001 ***
+            matematicas ciencias naturales sector_ies|oficial                  0.000      -8.717     0.000          -69805680.118  < .001 ***
+            matematicas ciencias naturales sector_ies|privada                  0.000      -9.511     0.000         -202740865.426  < .001 ***
+            matematicas ciencias naturales comparacion|otras IES          181528.888      12.109     0.000          186224721.517  < .001 ***
+            matematicas ciencias naturales metodologia|presencial          31925.652      10.371     0.000           31392076.881  < .001 ***
+            matematicas ciencias naturales metodologia|presencial-virtual      0.000     -13.289     0.000   -154759216830692.562  < .001 ***
+            matematicas ciencias naturales sexo|masculino                      0.541      -0.615     0.000          -22939661.474  < .001 ***
+            matematicas ciencias naturales demanda_real                        1.000      -0.000     0.000                 -6.402  < .001 ***
+            matematicas ciencias naturales admitidos                           0.999      -0.001     0.000                 -6.547  < .001 ***
+            matematicas ciencias naturales demanda_potencial                   0.997      -0.003     0.000                 -6.191  < .001 ***
+
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Pseudo R-squared: 0.274
+Log-likelihood: -3300.885, AIC: 6727.769, BIC: 7086.344
+Chi-squared: 2496.862 df(62), p.value < .001 
+Nr obs: 2,190 
+
+                                                                          coefficient    2.5%   97.5%   +/-
+              agronomia veterinaria afines             sector_ies|oficial      -8.434  -8.434  -8.434 0.000
+              agronomia veterinaria afines             sector_ies|privada      -9.384  -9.384  -9.384 0.000
+              agronomia veterinaria afines          comparacion|otras IES      11.956  11.956  11.956 0.000
+              agronomia veterinaria afines         metodologia|presencial      10.016  10.016  10.016 0.000
+              agronomia veterinaria afines metodologia|presencial-virtual     -13.590 -13.590 -13.590 0.000
+              agronomia veterinaria afines                 sexo|masculino      -0.594  -0.594  -0.594 0.000
+              agronomia veterinaria afines                   demanda_real      -0.000  -0.001  -0.000 0.000
+              agronomia veterinaria afines                      admitidos      -0.001  -0.001  -0.001 0.000
+              agronomia veterinaria afines              demanda_potencial      -0.002  -0.002  -0.001 0.001
+                              bellas artes             sector_ies|oficial      -7.165  -7.165  -7.165 0.000
+                              bellas artes             sector_ies|privada      -7.689  -7.689  -7.689 0.000
+                              bellas artes          comparacion|otras IES       9.726   9.726   9.726 0.000
+                              bellas artes         metodologia|presencial       8.419   8.419   8.419 0.000
+                              bellas artes metodologia|presencial-virtual     -13.139 -13.139 -13.139 0.000
+                              bellas artes                 sexo|masculino      -0.573  -0.573  -0.573 0.000
+                              bellas artes                   demanda_real      -0.000  -0.000  -0.000 0.000
+                              bellas artes                      admitidos      -0.001  -0.001  -0.000 0.000
+                              bellas artes              demanda_potencial      -0.001  -0.002  -0.001 0.000
+                        ciencias educacion             sector_ies|oficial      -6.518  -6.518  -6.518 0.000
+                        ciencias educacion             sector_ies|privada      -6.487  -6.487  -6.487 0.000
+                        ciencias educacion          comparacion|otras IES       8.460   8.460   8.460 0.000
+                        ciencias educacion         metodologia|presencial       5.854   5.854   5.854 0.000
+                        ciencias educacion metodologia|presencial-virtual     -12.956 -12.956 -12.956 0.000
+                        ciencias educacion                 sexo|masculino      -0.394  -0.394  -0.394 0.000
+                        ciencias educacion                   demanda_real      -0.000  -0.000  -0.000 0.000
+                        ciencias educacion                      admitidos      -0.001  -0.001  -0.000 0.000
+                        ciencias educacion              demanda_potencial      -0.000  -0.000   0.000 0.000
+                            ciencias salud             sector_ies|oficial      -4.789  -4.789  -4.789 0.000
+                            ciencias salud             sector_ies|privada      -4.464  -4.464  -4.464 0.000
+                            ciencias salud          comparacion|otras IES       5.803   5.803   5.803 0.000
+                            ciencias salud         metodologia|presencial       5.136   5.136   5.136 0.000
+                            ciencias salud metodologia|presencial-virtual     -12.262 -12.262 -12.262 0.000
+                            ciencias salud                 sexo|masculino      -0.143  -0.143  -0.143 0.000
+                            ciencias salud                   demanda_real       0.000  -0.000   0.000 0.000
+                            ciencias salud                      admitidos      -0.001  -0.001  -0.000 0.000
+                            ciencias salud              demanda_potencial      -0.000  -0.000   0.000 0.000
+                 ciencias sociales humanas             sector_ies|oficial      -1.997  -1.997  -1.997 0.000
+                 ciencias sociales humanas             sector_ies|privada      -1.968  -1.968  -1.968 0.000
+                 ciencias sociales humanas          comparacion|otras IES       2.648   2.648   2.648 0.000
+                 ciencias sociales humanas         metodologia|presencial       2.129   2.129   2.129 0.000
+                 ciencias sociales humanas metodologia|presencial-virtual     -12.239 -12.239 -12.239 0.000
+                 ciencias sociales humanas                 sexo|masculino       0.021   0.021   0.021 0.000
+                 ciencias sociales humanas                   demanda_real      -0.000  -0.000   0.000 0.000
+                 ciencias sociales humanas                      admitidos      -0.000  -0.000  -0.000 0.000
+                 ciencias sociales humanas              demanda_potencial       0.000  -0.000   0.000 0.000
+ economia administracion contaduria afines             sector_ies|oficial       0.773   0.773   0.773 0.000
+ economia administracion contaduria afines             sector_ies|privada       0.787   0.787   0.787 0.000
+ economia administracion contaduria afines          comparacion|otras IES      -1.014  -1.014  -1.014 0.000
+ economia administracion contaduria afines         metodologia|presencial      -0.870  -0.870  -0.870 0.000
+ economia administracion contaduria afines metodologia|presencial-virtual      -9.994  -9.994  -9.994 0.000
+ economia administracion contaduria afines                 sexo|masculino       0.113   0.113   0.113 0.000
+ economia administracion contaduria afines                   demanda_real      -0.000  -0.000   0.000 0.000
+ economia administracion contaduria afines                      admitidos      -0.000  -0.000   0.000 0.000
+ economia administracion contaduria afines              demanda_potencial       0.000   0.000   0.000 0.000
+            matematicas ciencias naturales             sector_ies|oficial      -8.717  -8.717  -8.717 0.000
+            matematicas ciencias naturales             sector_ies|privada      -9.511  -9.511  -9.511 0.000
+            matematicas ciencias naturales          comparacion|otras IES      12.109  12.109  12.109 0.000
+            matematicas ciencias naturales         metodologia|presencial      10.371  10.371  10.371 0.000
+            matematicas ciencias naturales metodologia|presencial-virtual     -13.289 -13.289 -13.289 0.000
+            matematicas ciencias naturales                 sexo|masculino      -0.615  -0.615  -0.615 0.000
+            matematicas ciencias naturales                   demanda_real      -0.000  -0.000  -0.000 0.000
+            matematicas ciencias naturales                      admitidos      -0.001  -0.002  -0.001 0.000
+            matematicas ciencias naturales              demanda_potencial      -0.003  -0.004  -0.002 0.001
