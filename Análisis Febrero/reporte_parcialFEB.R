@@ -458,6 +458,18 @@ grid()
 legend("topleft", c("Demanda real", "Admitidos", "Demanda potencial"),
        lty = 1, col = c("red", "blue", "green"))
 
+# Nueva escala y limites diferentes ---------------------------------------
+
+plot(ts.ins/1000,type = "l", lwd = 2, col = "red", xlab = "Año",
+     ylab = "# de Personas x1000", xlim = c(2007,2021), ylim = c(0, 1000))
+
+lines(ts.admi/1000, type = "l", col = "blue", lwd = 2)
+lines(ts.grad/1000, type = "l", col = "green", lwd = 2)
+grid()
+
+legend("topleft", c("Demanda real", "Admitidos", "Demanda potencial"),
+       bty = 'n', lty = 1, col = c("red", "blue", "green"))
+
 # ---- Cluster mixto ----
 
 sum.tot %<>% filter(area_de_conocimiento != "sin clasificar")
