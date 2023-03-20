@@ -37,7 +37,11 @@ require(randomForest)
 require(rsample)
 require(fpc)
 require(vcd)
+<<<<<<< Updated upstream
 ##cdddddddd
+=======
+### pruebas sssññ
+>>>>>>> Stashed changes
 ```
 
 Lectura de la base de datos, donde se contienen los *subsets* creados en el mes de febrero:
