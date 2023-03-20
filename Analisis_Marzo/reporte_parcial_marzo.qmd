@@ -37,7 +37,7 @@ require(randomForest)
 require(rsample)
 require(fpc)
 require(vcd)
-##cdddd
+##cdddddddd
 ```
 
 Lectura de la base de datos, donde se contienen los *subsets* creados en el mes de febrero:
